@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WDISG2 Chat</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Angular Required Polyfills -->
+    <script src="js/lib/angular2/system-polyfills.js"></script>
+    <script src="js/lib/angular2/es6-shim.min.js"></script>
+    <script src="js/lib/angular2/angular2-polyfills.js"></script>
+    <script src="js/lib/angular2/system.src.js"></script>
+    <script src="js/lib/angular2/Rx.js"></script>
+    
+    <!-- Socket.io -->
+    <script src="//cdn.socket.io/socket.io-1.4.5.js"></script>
+   
+    <!-- Angular -->
+    <script src="js/lib/angular2/angular2.dev.js"></script>
+    
+    <!-- Module Loading with System.js -->
+    <script>
+      System.config({
+        packages: {
+          js: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('js/main')
+        .then(null, console.error.bind(console));
+    </script>
+    
+  </head>
+  <body>
+    <chat-app>Loading...</chat-app>
+  </body>
+</html>
