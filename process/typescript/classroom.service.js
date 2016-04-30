@@ -18,13 +18,6 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            // // Define the interfaces for the data types we are working with.
-            // export interface Server {
-            //   loading: boolean,   //has the service loaded
-            //   connected: boolean, //has a socket connection established
-            //   joined: boolean,    //has the user joined the chat
-            //   online: string      //names of users currently in the chat
-            // }
             // Use the @Injectable Decorator to define the following class as a injectable service
             ClassroomService = (function () {
                 //CLASS METHODS
@@ -54,7 +47,9 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     //   joined: false,
                     //   online: ""
                     // }
-                    this.appRoutes = "intro";
+                    this.appRoutes = {
+                        intro: true
+                    };
                 }
                 //property accessor functions
                 // getServer(){
@@ -67,8 +62,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     return this.appRoutes;
                 };
                 ClassroomService.prototype.changeRoutes = function () {
-                    this.appRoutes = "shit";
-                    console.log("damn");
+                    this.appRoutes.intro = false;
                     console.log(this.appRoutes);
                 };
                 ClassroomService = __decorate([

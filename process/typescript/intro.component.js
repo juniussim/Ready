@@ -26,7 +26,6 @@ System.register(['angular2/core', './classroom.service'], function(exports_1, co
                     this._classroomService = _classroomService;
                 }
                 IntroComponent.prototype.buttonClicked = function () {
-                    console.log("button works");
                     this._classroomService.changeRoutes();
                 };
                 IntroComponent = __decorate([

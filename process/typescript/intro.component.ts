@@ -14,9 +14,9 @@ export class IntroComponent {
   appRoutes;
 
   buttonClicked(){
-    console.log("button works")
     this._classroomService.changeRoutes()
   }
+  
   constructor(private _classroomService: ClassroomService) {
   }
 

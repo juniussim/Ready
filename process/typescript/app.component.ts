@@ -1,7 +1,8 @@
 // Import all of our dependencies
 import {Component} from 'angular2/core';
+import {ClassroomService, AppRoutes} from './classroom.service';
 import {IntroComponent} from './intro.component';
-import {ClassroomService} from './classroom.service';
+
 // import {ChatService, Server} from './chat.service';
 
 // Use the @Component Decorator to define the following class as a component and provide the meta data including the view
@@ -14,9 +15,8 @@ import {ClassroomService} from './classroom.service';
     <div class="navPanel">
       <div class="navHeader">{{navHeader}}</div>
     </div>
-
-    <div class="bodyDiv" [ngSwitch]="appRoutes">
-      <intro  *ngSwitchWhen="'intro'" class="intro"></intro>
+    <div class="bodyDiv" [ngSwitch]="appRoutes.intro">
+      <intro  *ngSwitchWhen="true" class="intro"></intro>
     </div>
     <div (click)="buttonClicked()">hello</div>
   </div>
@@ -26,14 +26,8 @@ import {ClassroomService} from './classroom.service';
 export class AppComponent{
   // //CLASS PROPERTIES
   navHeader: string = "Ready";
-  appRoutes: string
+  appRoutes: AppRoutes;
   // server : Server;
-
-  buttonClicked(){
-    console.log("button works")
-    this.appRoutes = this._classroomService.getRoutes()
-  }
-
 
   // //CLASS METHODS
   constructor(private _classroomService: ClassroomService) {

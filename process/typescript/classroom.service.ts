@@ -9,6 +9,10 @@ import {Injectable} from 'angular2/core';
 //   online: string      //names of users currently in the chat
 // }
 
+export interface AppRoutes {
+  intro: boolean
+}
+
 // Use the @Injectable Decorator to define the following class as a injectable service
 @Injectable()
 export class ClassroomService {
@@ -19,7 +23,9 @@ export class ClassroomService {
   //   joined: false,
   //   online: ""
   // }
-  appRoutes: string = "intro"
+  appRoutes: AppRoutes = {
+    intro: true
+  }
 
   //property accessor functions
   // getServer(){
@@ -56,8 +62,7 @@ export class ClassroomService {
   }
 
   changeRoutes(){
-    this.appRoutes = "shit";
-    console.log("damn")
+    this.appRoutes.intro = false;
     console.log(this.appRoutes)
   }
   //handle form submission for joining the chat
