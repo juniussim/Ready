@@ -55,5 +55,4 @@ System.register(['angular2/core', './intro.component', './classroom.service'], f
         }
     }
 });
-
 //# sourceMappingURL=app.component.js.map

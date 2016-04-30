@@ -11,7 +11,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var ClassRoomService;
+    var ClassroomService;
     return {
         setters:[
             function (core_1_1) {
@@ -26,23 +26,9 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             //   online: string      //names of users currently in the chat
             // }
             // Use the @Injectable Decorator to define the following class as a injectable service
-            ClassRoomService = (function () {
-                //CLASS PROPERTIES
-                // const server:Server = {
-                //   loading: true,
-                //   connected: false,
-                //   joined: false,
-                //   online: ""
-                // }
-                //property accessor functions
-                // getServer(){
-                //   return this.server;
-                // }
-                // getMessages(){
-                //   return this.messages;
-                // }
+            ClassroomService = (function () {
                 //CLASS METHODS
-                function ClassRoomService() {
+                function ClassroomService() {
                     //connect the socket.io client to our webserver (assuming it's running on the same port)
                     // this.socket = io(window.location.host);
                     //
@@ -61,16 +47,38 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     //   //set array length to 0 to empty the array of past messages
                     //   this.messages.length = 0;
                     // });
+                    //CLASS PROPERTIES
+                    // const server:Server = {
+                    //   loading: true,
+                    //   connected: false,
+                    //   joined: false,
+                    //   online: ""
+                    // }
+                    this.appRoutes = "intro";
                 }
-                ClassRoomService = __decorate([
+                //property accessor functions
+                // getServer(){
+                //   return this.server;
+                // }
+                // getMessages(){
+                //   return this.messages;
+                // }
+                ClassroomService.prototype.getRoutes = function () {
+                    return this.appRoutes;
+                };
+                ClassroomService.prototype.changeRoutes = function () {
+                    this.appRoutes = "shit";
+                    console.log("damn");
+                    console.log(this.appRoutes);
+                };
+                ClassroomService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
-                ], ClassRoomService);
-                return ClassRoomService;
+                ], ClassroomService);
+                return ClassroomService;
             }());
-            exports_1("ClassRoomService", ClassRoomService);
+            exports_1("ClassroomService", ClassroomService);
         }
     }
 });
-
-//# sourceMappingURL=chat.service.js.map
+//# sourceMappingURL=classroom.service.js.map

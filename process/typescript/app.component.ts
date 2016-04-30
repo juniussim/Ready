@@ -1,46 +1,50 @@
 // Import all of our dependencies
-import {Component, OnInit} from 'angular2/core';
-import {MainComponent} from './main.component';
-import {JoinComponent} from './join.component';
-import {ChatService, Server} from './chat.service';
+import {Component} from 'angular2/core';
+import {IntroComponent} from './intro.component';
+import {ClassroomService} from './classroom.service';
+// import {ChatService, Server} from './chat.service';
 
-// Use the @Component Decorator to define the following class as a component and provide the meta data including the view 
+// Use the @Component Decorator to define the following class as a component and provide the meta data including the view
 @Component({
-  selector: "chat-app",
-  directives: [MainComponent, JoinComponent],
-  providers: [ChatService],
+  selector: "app-component",
+  directives: [IntroComponent],
+  providers: [ClassroomService],
   template: `
-    <div class="container">
-      <h1>{{title}} 
-        <!-- status tag changes based upon the connection state -->
-        <span id="status" class="label label-default"
-          [class.label-default]="server.loading" 
-          [class.label-success]="!server.loading && server.connected" 
-          [class.label-danger]="!server.loading && !server.connected">{{statusMessage()}}</span>
-      </h1>
+  <div class="container">
+    <div class="navPanel">
+      <div class="navHeader">{{navHeader}}</div>
     </div>
-    <!-- show join component if the server is not connected or the user hasn't joined yet -->
-    <join-chat *ngIf="!server.connected || !server.joined"></join-chat>
-    <!-- else show main component (if conected and user has joined) -->
-    <main-chat *ngIf="server.connected && server.joined"></main-chat>
+
+    <div class="bodyDiv" [ngSwitch]="appRoutes">
+      <intro  *ngSwitchWhen="'intro'" class="intro"></intro>
+    </div>
+    <div (click)="buttonClicked()">hello</div>
+  </div>
   `
 })
 
-export class AppComponent implements OnInit {
-  //CLASS PROPERTIES
-  title: string = "Angular 2 Chat";
-  server : Server;
+export class AppComponent{
+  // //CLASS PROPERTIES
+  navHeader: string = "Ready";
+  appRoutes: string
+  // server : Server;
 
-  //CLASS METHODS
-  constructor(private _chatService: ChatService) {
+  buttonClicked(){
+    console.log("button works")
+    this.appRoutes = this._classroomService.getRoutes()
+  }
+
+
+  // //CLASS METHODS
+  constructor(private _classroomService: ClassroomService) {
     //one component is created grab a reference to the server from the Chat Service
-    this.server = this._chatService.getServer();
+    this.appRoutes = this._classroomService.getRoutes();
   }
-  
-  //decide what status message should be based upon connection
-  statusMessage():string {
-      if (!this.server.loading && this.server.connected) return "connected"
-      if (!this.server.loading && !this.server.connected) return "disconnected"
-      return "loading"
-  }
+  //
+  // //decide what status message should be based upon connection
+  // statusMessage():string {
+  //     if (!this.server.loading && this.server.connected) return "connected"
+  //     if (!this.server.loading && !this.server.connected) return "disconnected"
+  //     return "loading"
+  // }
 }
