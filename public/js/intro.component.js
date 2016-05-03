@@ -22,12 +22,12 @@ System.register(['angular2/core', './classroom.service'], function(exports_1, co
             }],
         execute: function() {
             IntroComponent = (function () {
+                // buttonClicked(){
+                //   this._classroomService.changeRoutes()
+                // }
                 function IntroComponent(_classroomService) {
                     this._classroomService = _classroomService;
                 }
-                IntroComponent.prototype.buttonClicked = function () {
-                    this._classroomService.changeRoutes();
-                };
                 IntroComponent = __decorate([
                     core_1.Component({
                         selector: "intro",

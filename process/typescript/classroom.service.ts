@@ -1,56 +1,20 @@
 // Import all of our dependencies
 import {Injectable} from 'angular2/core';
 
-// // Define the interfaces for the data types we are working with.
-// export interface Server {
-//   loading: boolean,   //has the service loaded
-//   connected: boolean, //has a socket connection established
-//   joined: boolean,    //has the user joined the chat
-//   online: string      //names of users currently in the chat
-// }
-
-export interface AppRoutes {
-  intro: boolean
-}
-
 // Use the @Injectable Decorator to define the following class as a injectable service
 @Injectable()
 export class ClassroomService {
-  //CLASS PROPERTIES
-  // const server:Server = {
-  //   loading: true,
-  //   connected: false,
-  //   joined: false,
-  //   online: ""
-  // }
-  appRoutes: AppRoutes = {
-    intro: true
-  }
-
-  //property accessor functions
-  // getServer(){
-  //   return this.server;
-  // }
-  // getMessages(){
-  //   return this.messages;
-  // }
-  getRoutes(){
-    return this.appRoutes;
-  }
-
-  //CLASS METHODS
+  socket;
   constructor() {
     //connect the socket.io client to our webserver (assuming it's running on the same port)
-    // this.socket = io(window.location.host);
-    //
+    this.socket = io(window.location.host);
+
     // var self = this;
     // // ADD SOCKET EVENT LISTENERS
     // //handle connectting to and disconnecting from the chat server
-    // this.socket.on("connect", () => {
-    //   console.log("Connected to Chat Socket");
-    //   this.server.loading = false;
-    //   this.server.connected = true;
-    // });
+    this.socket.on("connect", () => {
+      console.log("Connected to Chat Socket");
+    });
     // this.socket.on("disconnect", () => {
     //   console.log("Disconnected from Chat Socket");
     //   this.server.connected = false;
@@ -58,13 +22,21 @@ export class ClassroomService {
     //   //set array length to 0 to empty the array of past messages
     //   this.messages.length = 0;
     // });
-
   }
-
-  changeRoutes(){
-    this.appRoutes.intro = false;
-    console.log(this.appRoutes)
-  }
+  //CLASS PROPERTIES
+  // const server:Server = {
+  //   loading: true,
+  //   connected: false,
+  //   joined: false,
+  //   online: ""
+  // }
+  //property accessor functions
+  // getServer(){
+  //   return this.server;
+  // }
+  // getMessages(){
+  //   return this.messages;
+  // }
   //handle form submission for joining the chat
   // joinChat(name){
   //   console.log("Joining chat with name: ", name);
@@ -85,4 +57,16 @@ export class ClassroomService {
   //     message: message
   //   });
   // }
+
+
+// Menu Component
+
+// Instructor Create Component
+submitClassName(className){
+  console.log("My class name is: ", className);
+  this.socket.emit("submitClassName", className );
+}
+
+
+// End of Export ClassRoom Service
 }

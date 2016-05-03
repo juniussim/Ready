@@ -20,19 +20,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             // Use the @Injectable Decorator to define the following class as a injectable service
             ClassroomService = (function () {
-                //CLASS METHODS
                 function ClassroomService() {
                     //connect the socket.io client to our webserver (assuming it's running on the same port)
-                    // this.socket = io(window.location.host);
-                    //
+                    this.socket = io(window.location.host);
                     // var self = this;
                     // // ADD SOCKET EVENT LISTENERS
                     // //handle connectting to and disconnecting from the chat server
-                    // this.socket.on("connect", () => {
-                    //   console.log("Connected to Chat Socket");
-                    //   this.server.loading = false;
-                    //   this.server.connected = true;
-                    // });
+                    this.socket.on("connect", function () {
+                        console.log("Connected to Chat Socket");
+                    });
                     // this.socket.on("disconnect", () => {
                     //   console.log("Disconnected from Chat Socket");
                     //   this.server.connected = false;
@@ -40,17 +36,14 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     //   //set array length to 0 to empty the array of past messages
                     //   this.messages.length = 0;
                     // });
-                    //CLASS PROPERTIES
-                    // const server:Server = {
-                    //   loading: true,
-                    //   connected: false,
-                    //   joined: false,
-                    //   online: ""
-                    // }
-                    this.appRoutes = {
-                        intro: true
-                    };
                 }
+                //CLASS PROPERTIES
+                // const server:Server = {
+                //   loading: true,
+                //   connected: false,
+                //   joined: false,
+                //   online: ""
+                // }
                 //property accessor functions
                 // getServer(){
                 //   return this.server;
@@ -58,12 +51,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 // getMessages(){
                 //   return this.messages;
                 // }
-                ClassroomService.prototype.getRoutes = function () {
-                    return this.appRoutes;
-                };
-                ClassroomService.prototype.changeRoutes = function () {
-                    this.appRoutes.intro = false;
-                    console.log(this.appRoutes);
+                //handle form submission for joining the chat
+                // joinChat(name){
+                //   console.log("Joining chat with name: ", name);
+                //
+                //   this.user = { name: name }
+                //   this.socket.emit("join", this.user );
+                // });
+                //
+                // //handle form submission for sending a chat message
+                // sendMessage(message) {
+                //   console.log("Sending message: ", message);
+                //   this.socket.emit("chat", message );
+                //   //add user's own message to the message array
+                //   this.messages.unshift({
+                //     isStatus: false,
+                //     isOwn: true,
+                //     user: this.user.name,
+                //     message: message
+                //   });
+                // }
+                // Menu Component
+                // Instructor Create Component
+                ClassroomService.prototype.submitClassName = function (className) {
+                    console.log("My class name is: ", className);
+                    this.socket.emit("submitClassName", className);
                 };
                 ClassroomService = __decorate([
                     core_1.Injectable(), 

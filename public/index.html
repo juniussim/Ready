@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
   <head>
+    <title>Tour of Heroes</title>
+    <base href="/">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ready</title>
     <!-- Semantic UI -->
@@ -23,25 +24,27 @@
 
     <!-- Angular -->
     <script src="js/lib/angular2/angular2.dev.js"></script>
-
+    <script src="js/lib/angular2/router.dev.js"></script>
 
     <!-- Module Loading with System.js -->
     <script>
       System.config({
         packages: {
+          //IS JS CORRECT?
           js: {
             format: 'register',
             defaultExtension: 'js'
           }
         }
       });
-      System.import('js/boot')
+      //IS THIS LINK CORRECT? RATHER THAN APP/BOOTSTRAP
+      System.import('js/bootstrap')
         .then(null, console.error.bind(console));
     </script>
-
   </head>
+
   <body>
     <!-- main entry point for our Angular2 App -->
-    <app-component>Loading...</app-component>
+    <my-app><h1>🐳🐠Just Keep Swimming!🐬🐟</h1></my-app>
   </body>
 </html>

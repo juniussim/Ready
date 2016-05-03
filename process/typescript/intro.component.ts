@@ -13,10 +13,10 @@ import {ClassroomService} from './classroom.service';
 export class IntroComponent {
   appRoutes;
 
-  buttonClicked(){
-    this._classroomService.changeRoutes()
-  }
-  
+  // buttonClicked(){
+  //   this._classroomService.changeRoutes()
+  // }
+
   constructor(private _classroomService: ClassroomService) {
   }
 
