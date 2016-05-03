@@ -9,6 +9,11 @@ const io          = require("socket.io")(server);
 
 // Socket Connections - All sockets connected will be stored in this connections array
 const connections = [];
+const rooms = [];
+
+function findConnection(id){
+  return connections.filter(function(c) {return c.id === id;})[0];
+}
 
 //start ther server listening
 server.listen(port, ()=>{
@@ -45,6 +50,29 @@ io.on("connection", (socket) => {
 
   socket.once("submitClassName", (className) => {
     socket.join(className)
+    let connection = findConnection(socket.id);
+    console.log(connection)
+    // generate secret code
+    // pass the secret code back to the instructor so that he can show it on the next page
+    rooms.push({
+      name: className,
+      secretCode: secretCode
+    });
   })
+
+// generate secret code
+secretCodeGenerator() {
+ var secretCodeList = [
+  'chicken',
+  'fish',
+  'dog',
+]
+secretCode = secretCodeList[0]
+}
+// list of secret codes
+
+// student submit secret code
+// if secret code exist
+// let him join room
 
 });
