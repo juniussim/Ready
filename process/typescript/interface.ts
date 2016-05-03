@@ -5,3 +5,8 @@
 //   joined: boolean,    //has the user joined the chat
 //   online: string      //names of users currently in the chat
 // }
+
+export interface Room {
+  name: string,
+  secretCode: string
+}

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './classroom.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, classroom_service_1;
     var InstructorDashboardComponent;
     return {
         setters:[
@@ -19,22 +19,33 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (classroom_service_1_1) {
+                classroom_service_1 = classroom_service_1_1;
             }],
         execute: function() {
             // import { InstructorTrafficComponent } from './instructor-traffic.component';
-            // import { ClassroomService } from './classroom.service';
             InstructorDashboardComponent = (function () {
-                function InstructorDashboardComponent(_router) {
+                function InstructorDashboardComponent(_router, _classroomService) {
                     this._router = _router;
+                    this._classroomService = _classroomService;
+                    var room = this._classroomService.getRoom();
+                    this.secretCode = room.secretCode;
                     // end of constructor
                 }
+                InstructorDashboardComponent.prototype.areYouReady = function () {
+                    this._router.navigate(['Instructor-ready']);
+                };
+                InstructorDashboardComponent.prototype.closeRoom = function () {
+                    this._router.navigate(['Menu']);
+                };
                 InstructorDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'instructor-dashboard',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorDashboard Component</h1>\n  "
+                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h4>{{secretCode}}</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeRoom()\">Close Room</button>\n  "
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorDashboardComponent);
                 return InstructorDashboardComponent;
             }());

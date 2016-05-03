@@ -21,56 +21,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             // Use the @Injectable Decorator to define the following class as a injectable service
             ClassroomService = (function () {
                 function ClassroomService() {
+                    var _this = this;
                     //connect the socket.io client to our webserver (assuming it's running on the same port)
                     this.socket = io(window.location.host);
-                    // var self = this;
                     // // ADD SOCKET EVENT LISTENERS
                     // //handle connectting to and disconnecting from the chat server
-                    this.socket.on("connect", function () {
-                        console.log("Connected to Chat Socket");
+                    this.socket.on('connect', function () {
+                        console.log('Connected to Chat Socket');
                     });
-                    // this.socket.on("disconnect", () => {
-                    //   console.log("Disconnected from Chat Socket");
-                    //   this.server.connected = false;
-                    //   this.server.joined = false;
-                    //   //set array length to 0 to empty the array of past messages
-                    //   this.messages.length = 0;
-                    // });
+                    this.socket.on('disconnect', function () {
+                        console.log('Disconnected from Chat Socket');
+                    });
+                    this.socket.on('secretCode', function (room) {
+                        console.log('Recieved Room Object:', room);
+                        _this.room = room;
+                        console.log('look here', _this.room);
+                    });
                 }
-                //CLASS PROPERTIES
-                // const server:Server = {
-                //   loading: true,
-                //   connected: false,
-                //   joined: false,
-                //   online: ""
-                // }
-                //property accessor functions
-                // getServer(){
-                //   return this.server;
-                // }
-                // getMessages(){
-                //   return this.messages;
-                // }
-                //handle form submission for joining the chat
-                // joinChat(name){
-                //   console.log("Joining chat with name: ", name);
-                //
-                //   this.user = { name: name }
-                //   this.socket.emit("join", this.user );
-                // });
-                //
-                // //handle form submission for sending a chat message
-                // sendMessage(message) {
-                //   console.log("Sending message: ", message);
-                //   this.socket.emit("chat", message );
-                //   //add user's own message to the message array
-                //   this.messages.unshift({
-                //     isStatus: false,
-                //     isOwn: true,
-                //     user: this.user.name,
-                //     message: message
-                //   });
-                // }
+                ClassroomService.prototype.getRoom = function () {
+                    // console.log('look here',this.room)
+                    return this.room;
+                };
                 // Menu Component
                 // Instructor Create Component
                 ClassroomService.prototype.submitClassName = function (className) {

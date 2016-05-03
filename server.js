@@ -12,7 +12,22 @@ const connections = [];
 const rooms = [];
 
 function findConnection(id){
-  return connections.filter(function(c) {return c.id === id;})[0];
+  return connections.filter(function(connection) {return connection.id === id;})[0];
+}
+function findRoom(secretCode){
+  return rooms.filter(function(room) {return room.secretCode === secretCode;})[0];
+}
+
+// generate secret code
+function secretCodeGenerator() {
+ var availableCodeList = ['martini','mystical','faith','diagonal','magic','booze','master','sprite','heroic','logic','perfect','channel','hustle','code','ruby','paradox','canvas','baseline','island','wonder'];
+ var usedCodeList = [];
+ //take first element of availableCodeList array,
+ //add to end of usedCodeList
+ //when close room, filter by secretcode, remove from usedCodeList and push to availableCodeList
+ var secretCode = availableCodeList.shift();
+ usedCodeList.push(secretCode);
+ return secretCode;
 }
 
 //start ther server listening
@@ -32,7 +47,7 @@ io.on("connection", (socket) => {
   console.log(`## New connection (${socket.id}). Total: ${connections.length}.`);
 
   //listen for a disconnect event
-  socket.once("disconnect", () => {
+  socket.once('disconnect', () => {
     //find the connection and remove  from the collection
     let connection = findConnection(socket.id);
     if (connection){
@@ -48,27 +63,22 @@ io.on("connection", (socket) => {
     socket.disconnect();
   });
 
-  socket.once("submitClassName", (className) => {
+  socket.on('submitClassName', (className) => {
     socket.join(className)
+    // this connection guy does nothing yet (just put here in case)
     let connection = findConnection(socket.id);
     console.log(connection)
-    // generate secret code
-    // pass the secret code back to the instructor so that he can show it on the next page
-    rooms.push({
+    var room = {
       name: className,
-      secretCode: secretCode
-    });
+      // pass in secretcodefunction
+      secretCode: secretCodeGenerator()
+    }
+    rooms.push(room);
+    socket.emit('secretCode', room)
   })
 
-// generate secret code
-secretCodeGenerator() {
- var secretCodeList = [
-  'chicken',
-  'fish',
-  'dog',
-]
-secretCode = secretCodeList[0]
-}
+
+
 // list of secret codes
 
 // student submit secret code
