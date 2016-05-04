@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './classroom.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, classroom_service_1;
     var StudentProfileComponent;
     return {
         setters:[
@@ -19,21 +19,28 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (classroom_service_1_1) {
+                classroom_service_1 = classroom_service_1_1;
             }],
         execute: function() {
-            // import { ClassroomService } from './classroom.service';
             StudentProfileComponent = (function () {
-                function StudentProfileComponent(_router) {
+                function StudentProfileComponent(_router, _classroomService) {
                     this._router = _router;
+                    this._classroomService = _classroomService;
                     // end of constructor
                 }
+                StudentProfileComponent.prototype.submitProfileName = function (profileName) {
+                    this._classroomService.submitProfileName(profileName);
+                    this._router.navigate(['Student-join']);
+                };
                 StudentProfileComponent = __decorate([
                     core_1.Component({
                         selector: 'student-profile',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentProfile Component</h1>\n  ",
+                        template: "\n  <h1>StudentProfile Component</h1>\n  <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Your Name\" autocomplete=\"off\" required autofocus />\n  <button [disabled]=\"!inputValue\" (click)=\"submitProfileName(inputValue)\">CONTINUE</button>\n  ",
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], StudentProfileComponent);
                 return StudentProfileComponent;
             }());

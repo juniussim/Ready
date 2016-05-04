@@ -37,6 +37,7 @@ export class InstructorDashboardComponent {
   }
   closeRoom(){
     this._router.navigate(['Menu']);
+    this._classroomService.closeRoom()
   }
   // end of class
 }

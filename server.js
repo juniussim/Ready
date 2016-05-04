@@ -36,11 +36,24 @@ io.on("connection", (socket) => {
     socketController.disconnect(socket);
   })
 
+  // INSTRUCTOR SOCKET
+
   socket.on('submitClassName', (className) => {
     socketController.submitClassName(socket, className);
   })
 
+  socket.on('closeRoom', (room) => {
+    socketController.closeRoom(socket, room);
+  })
 
+  // STUDENT SOCKET
+  socket.on('submitProfileName', (profileName) => {
+    socketController.submitProfileName(socket, profileName);
+  })
+
+  socket.on('submitSecretCode', (secretCode) => {
+    socketController.submitSecretCode(socket, secretCode);
+  })
 
 // list of secret codes
 

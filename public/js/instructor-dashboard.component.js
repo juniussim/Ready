@@ -39,6 +39,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                 };
                 InstructorDashboardComponent.prototype.closeRoom = function () {
                     this._router.navigate(['Menu']);
+                    this._classroomService.closeRoom();
                 };
                 InstructorDashboardComponent = __decorate([
                     core_1.Component({

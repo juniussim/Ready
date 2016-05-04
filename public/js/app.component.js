@@ -96,7 +96,7 @@ System.register(['angular2/core', 'angular2/router', './menu.component', './inst
                         },
                         {
                             path: '/student-dashboard',
-                            name: '/Student-dashboard',
+                            name: 'Student-dashboard',
                             component: student_dashboard_component_1.StudentDashboardComponent,
                         },
                         {

@@ -60,7 +60,7 @@ import { ClassroomService } from './classroom.service';
   },
   {
     path: '/student-dashboard',
-    name: '/Student-dashboard',
+    name: 'Student-dashboard',
     component: StudentDashboardComponent,
   },
   {

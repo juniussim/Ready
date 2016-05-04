@@ -9,3 +9,7 @@ export interface Room {
   name: string,
   secretCode: string
 }
+
+export interface User {
+  name: string
+}
