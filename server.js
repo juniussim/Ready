@@ -21,6 +21,27 @@ server.listen(port, ()=>{
 app.get('/menu', function(req,res){
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
+app.get('/instructor-class-name', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+app.get('/instructor-dashboard', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+app.get('/instructor-ready', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+app.get('/student-profile', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+app.get('/student-join', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+app.get('/student-dashboard', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+app.get('/student-ready', function(req,res){
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 app.use(express.static("./public"));
 

@@ -34,7 +34,7 @@ import { ClassroomService } from './classroom.service';
     useAsDefault: true,
   },
   {
-    path: '/Instructor-class-name',
+    path: '/instructor-class-name',
     name: 'Instructor-class-name',
     component: InstructorClassNameComponent,
   },

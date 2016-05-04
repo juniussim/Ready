@@ -70,7 +70,7 @@ System.register(['angular2/core', 'angular2/router', './menu.component', './inst
                             useAsDefault: true,
                         },
                         {
-                            path: '/Instructor-class-name',
+                            path: '/instructor-class-name',
                             name: 'Instructor-class-name',
                             component: instructor_class_name_component_1.InstructorClassNameComponent,
                         },
