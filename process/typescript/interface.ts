@@ -13,3 +13,7 @@ export interface Room {
 export interface User {
   name: string
 }
+
+export interface ErrorState {
+  secretCodeError: boolean
+}

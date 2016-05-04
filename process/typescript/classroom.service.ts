@@ -1,7 +1,7 @@
 // Import all of our dependencies
 import { Injectable } from 'angular2/core';
 import { Router } from 'angular2/router';
-import { Room, User } from './interface';
+import { Room, User, ErrorState } from './interface';
 // export interface Room {
 //   name: string,
 //   secretCode: string
@@ -13,11 +13,14 @@ export class ClassroomService {
   socket;
   room: Room;
   user: User;
-  // correctSecretCode: boolean = false;
+  errorState: ErrorState;
 
   getRoom() {
     // console.log('look here',this.room)
     return this.room;
+  }
+  getSecretCodeError() {
+    return this.errorState;
   }
 
   constructor(
@@ -47,13 +50,11 @@ export class ClassroomService {
 
     this.socket.on('secretCodeExist', (correctSecretCode) => {
         // we want to do the room entry logic here
-        console.log('hehrhehreh', correctSecretCode)
         if (correctSecretCode) {
-          // this.correctSecretCode = true;
-          console.log('I am a lamma')
+          this.errorState = {secretCodeError: false};
           this._router.navigate(['Student-dashboard']);
         } else {
-          // this.correctSecretCode = false;
+          this.errorState = {secretCodeError: true};
         }
         console.log('status of correctSecretCode', correctSecretCode)
     })

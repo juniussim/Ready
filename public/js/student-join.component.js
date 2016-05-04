@@ -41,11 +41,14 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     //   // red box focus
                     // }
                 };
+                StudentJoinComponent.prototype.getSecretCodeError = function () {
+                    this.secretCodeError = this._classroomService.getSecretCodeError();
+                };
                 StudentJoinComponent = __decorate([
                     core_1.Component({
                         selector: 'student-join',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentJoin Component</h1>\n  <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Secret Code\" autocomplete=\"off\" required autofocus />\n  <button [disabled]=\"!inputValue\" (click)=\"submitSecretCode(inputValue)\">LET'S GO</button>\n  ",
+                        template: "\n  <h1>StudentJoin Component</h1>\n  <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Secret Code\" autocomplete=\"off\" required autofocus />\n  <button [disabled]=\"!inputValue\" (click)=\"submitSecretCode(inputValue)\">LET'S GO</button>\n  <div *ngIf=\"{{secretCodeError}}\">\n    <p>You can keep guessing or you can ask the instructor</p>\n  </div>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], StudentJoinComponent);

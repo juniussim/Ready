@@ -50,22 +50,23 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     // ================================== Student ==================================
                     this.socket.on('secretCodeExist', function (correctSecretCode) {
                         // we want to do the room entry logic here
-                        console.log('hehrhehreh', correctSecretCode);
                         if (correctSecretCode) {
-                            // this.correctSecretCode = true;
-                            console.log('I am a lamma');
+                            _this.errorState = { secretCodeError: false };
                             _this._router.navigate(['Student-dashboard']);
                         }
                         else {
+                            _this.errorState = { secretCodeError: true };
                         }
                         console.log('status of correctSecretCode', correctSecretCode);
                     });
                     // end of constructor braces
                 }
-                // correctSecretCode: boolean = false;
                 ClassroomService.prototype.getRoom = function () {
                     // console.log('look here',this.room)
                     return this.room;
+                };
+                ClassroomService.prototype.getSecretCodeError = function () {
+                    return this.errorState;
                 };
                 // Menu Component
                 // Instructor ClassName Component
