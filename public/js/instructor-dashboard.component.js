@@ -31,6 +31,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     this._classroomService = _classroomService;
                     var room = this._classroomService.getRoom();
                     this.secretCode = room.secretCode;
+                    this.name = room.name;
                     // end of constructor
                 }
                 InstructorDashboardComponent.prototype.areYouReady = function () {
@@ -43,7 +44,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'instructor-dashboard',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h4>{{secretCode}}</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeRoom()\">Close Room</button>\n  "
+                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeRoom()\">Close Room</button>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorDashboardComponent);
@@ -53,5 +54,8 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
         }
     }
 });
+// anything that insides the constructor gets done first
+// followed by ngOnInit
+// so best practice to leave out the heavy duty stuff outside the constructor and in the Init
 
 //# sourceMappingURL=instructor-dashboard.component.js.map

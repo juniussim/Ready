@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,18 +10,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, router_1;
     var ClassroomService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
+            // export interface Room {
+            //   name: string,
+            //   secretCode: string
+            // }
             // Use the @Injectable Decorator to define the following class as a injectable service
             ClassroomService = (function () {
-                function ClassroomService() {
+                function ClassroomService(_router) {
                     var _this = this;
+                    this._router = _router;
+                    // ignore this silly error
                     //connect the socket.io client to our webserver (assuming it's running on the same port)
                     this.socket = io(window.location.host);
                     // // ADD SOCKET EVENT LISTENERS
@@ -36,6 +45,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         console.log('Recieved Room Object:', room);
                         _this.room = room;
                         console.log('look here', _this.room);
+                        _this._router.navigate(['Instructor-dashboard']);
                     });
                 }
                 ClassroomService.prototype.getRoom = function () {
@@ -50,7 +60,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 ClassroomService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], ClassroomService);
                 return ClassroomService;
             }());

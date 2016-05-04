@@ -12,7 +12,8 @@ import { ClassroomService } from './classroom.service';
   `],
   template: `
   <h1>InstructorDashboard Component</h1>
-  <h4>{{secretCode}}</h4>
+  <h1>{{name}}</h1>
+  <h4>Secret Code: {{secretCode}}</h4>
   <button (click)="areYouReady()">Are You Ready?</button>
   <button (click)="closeRoom()">Close Room</button>
   `
@@ -20,6 +21,7 @@ import { ClassroomService } from './classroom.service';
 })
 
 export class InstructorDashboardComponent {
+  name: string;
   secretCode: string;
   constructor(
     private _router: Router,
@@ -27,6 +29,7 @@ export class InstructorDashboardComponent {
   ){
     var room = this._classroomService.getRoom()
     this.secretCode = room.secretCode;
+    this.name = room.name;
   // end of constructor
   }
   areYouReady(){
@@ -37,3 +40,7 @@ export class InstructorDashboardComponent {
   }
   // end of class
 }
+
+// anything that insides the constructor gets done first
+// followed by ngOnInit
+// so best practice to leave out the heavy duty stuff outside the constructor and in the Init

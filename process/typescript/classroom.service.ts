@@ -1,10 +1,11 @@
 // Import all of our dependencies
 import { Injectable } from 'angular2/core';
-// import { Room } from from './interface';
-export interface Room {
-  name: string,
-  secretCode: string
-}
+import { Router } from 'angular2/router';
+import { Room } from './interface';
+// export interface Room {
+//   name: string,
+//   secretCode: string
+// }
 
 // Use the @Injectable Decorator to define the following class as a injectable service
 @Injectable()
@@ -17,7 +18,10 @@ export class ClassroomService {
     return this.room;
   }
 
-  constructor() {
+  constructor(
+    private _router: Router
+  ) {
+    // ignore this silly error
     //connect the socket.io client to our webserver (assuming it's running on the same port)
     this.socket = io(window.location.host);
 
@@ -33,6 +37,7 @@ export class ClassroomService {
       console.log('Recieved Room Object:', room)
       this.room = room;
       console.log('look here', this.room)
+      this._router.navigate(['Instructor-dashboard']);
     })
   }
 

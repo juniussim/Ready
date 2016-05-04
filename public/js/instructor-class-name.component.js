@@ -32,7 +32,8 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                 }
                 InstructorClassNameComponent.prototype.submitClassName = function (className) {
                     this._classroomService.submitClassName(className);
-                    this._router.navigate(['Instructor-dashboard']);
+                    //THIS GUY NEED TO FINISH AFTER SECRETCODE IN CLASSROOM.SERVICE RUNS
+                    // this._router.navigate(['Instructor-dashboard']);
                 };
                 InstructorClassNameComponent = __decorate([
                     core_1.Component({

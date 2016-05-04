@@ -30,14 +30,12 @@
     <script>
       System.config({
         packages: {
-          //IS JS CORRECT?
           js: {
             format: 'register',
             defaultExtension: 'js'
           }
         }
       });
-      //IS THIS LINK CORRECT? RATHER THAN APP/BOOTSTRAP
       System.import('js/bootstrap')
         .then(null, console.error.bind(console));
     </script>

@@ -25,6 +25,6 @@ export class InstructorClassNameComponent {
   submitClassName(className){
     this._classroomService.submitClassName(className);
     //THIS GUY NEED TO FINISH AFTER SECRETCODE IN CLASSROOM.SERVICE RUNS
-    this._router.navigate(['Instructor-dashboard']);
+    // this._router.navigate(['Instructor-dashboard']);
   }
 }
