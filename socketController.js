@@ -137,7 +137,7 @@ function submitSecretCode(socket, secretCode, io){
     // emit something back so that we can route him to the next page
     socket.emit('secretCodeExist', true)
     // connections should be number of sockets who are joined to the room - 1 (instructor)
-    io.to(room.secretCode).emit("newStudentConnection", (findNumberOfRoomConnections(secretCode)-1));
+    io.to(room.secretCode).emit("updateNumberOfRoomConnections", (findNumberOfRoomConnections(secretCode)-1));
   } else {
     // emit him some message so that client knows that the secret code is wrong
     socket.emit('secretCodeExist', false)
@@ -149,7 +149,7 @@ function studentLeaveClass(socket,io){
   var secretCodeOfPreviousRoom = connection.secretCode
   connection.secretCode = ""
   // change the name of the emit later (refactor it so that this guy and the guy above share the same emit)
-  io.to(secretCodeOfPreviousRoom).emit("newStudentConnection", (findNumberOfRoomConnections(secretCodeOfPreviousRoom)-1))
+  io.to(secretCodeOfPreviousRoom).emit("updateNumberOfRoomConnections", (findNumberOfRoomConnections(secretCodeOfPreviousRoom)-1))
 }
 
 function studentReady(socket,io){
