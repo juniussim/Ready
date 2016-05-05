@@ -56,6 +56,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     });
                     this.socket.on('disconnect', function () {
                         console.log('Disconnected from Chat Socket');
+                        // just in case navigation
+                        _this._router.navigate(['menu']);
                     });
                     // ================================== Instructor ==================================
                     this.socket.on('createSecretCode', function (room) {
@@ -64,7 +66,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         _this._router.navigate(['Instructor-dashboard']);
                     });
                     this.socket.on('updateNumberOfRoomConnections', function (studentConnections) {
-                        console.log('New student joined, total number of students: ', studentConnections);
+                        console.log('Room connections changed, total number of students: ', studentConnections);
                         _this.studentConnections.number = studentConnections;
                     });
                     // ================================== Student ==================================
@@ -72,6 +74,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         // we want to do the room entry logic here
                         if (correctSecretCode) {
                             _this._router.navigate(['Student-dashboard']);
+                            _this.errorState.secretCodeError = false;
                         }
                         else {
                             _this.errorState.secretCodeError = true;
@@ -83,6 +86,11 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     });
                     this.socket.on('studentsCloseClass', function () {
                         _this._router.navigate(['Menu']);
+                        // when you close the class, you want to set the ready status back to false
+                        _this.isStudentReady.status = false;
+                        _this.totalNumberOfReadyStudents.number = 0;
+                        // trying an alternative solution first
+                        // this.studentConnections.number = 0
                     });
                     // ========================== Ready  =============================
                     this.socket.on('updateStudentReady', function (totalNumberOfReadyStudents) {
@@ -138,8 +146,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.socket.emit('instructorCallReady');
                 };
                 ClassroomService.prototype.closeClass = function () {
-                    console.log('Closing Class: ', this.room);
-                    this.socket.emit('closeClass', this.room);
+                    console.log('Closing Class: ');
+                    this.socket.emit('closeClass');
                     // server sockets receive closeroom and then emits out to students to close their room as well
                     // considering not storing anything on the client side and removing room
                     // we don't necessarily need this because when someone joins the room in future, he would create a new room and the existing room stored on the client side will be overwritten

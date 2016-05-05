@@ -54,7 +54,7 @@ io.on("connection", (socket) => {
   //Creating an anonymous function within a function allows it to access the function scope - and thus know what the socket variable is
   //listen for a disconnect event
   socket.once('disconnect', () => {
-    socketController.disconnect(socket);
+    socketController.disconnect(socket,io);
   })
 
   // INSTRUCTOR SOCKET
@@ -63,8 +63,8 @@ io.on("connection", (socket) => {
     socketController.submitClassName(socket, className);
   })
 
-  socket.on('closeClass', (room) => {
-    socketController.closeClass(socket, room);
+  socket.on('closeClass', () => {
+    socketController.closeClass(socket,io);
   })
 
   // STUDENT SOCKET
@@ -83,7 +83,7 @@ io.on("connection", (socket) => {
   })
 
   socket.on('instructorEndsReadySession', () => {
-    socketController.instructorEndsReadySession(socket, io);
+    socketController.instructorEndsReadySession(socket);
   })
 
   socket.on('studentLeaveClass', () => {

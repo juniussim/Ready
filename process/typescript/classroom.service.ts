@@ -79,6 +79,8 @@ export class ClassroomService {
     });
     this.socket.on('disconnect', () => {
       console.log('Disconnected from Chat Socket');
+      // just in case navigation
+      this._router.navigate(['menu']);
     });
 
     // ================================== Instructor ==================================
@@ -89,7 +91,7 @@ export class ClassroomService {
       this._router.navigate(['Instructor-dashboard']);
     })
     this.socket.on('updateNumberOfRoomConnections', (studentConnections) => {
-      console.log('New student joined, total number of students: ', studentConnections)
+      console.log('Room connections changed, total number of students: ', studentConnections)
       this.studentConnections.number = studentConnections;
     })
 
@@ -99,6 +101,7 @@ export class ClassroomService {
         // we want to do the room entry logic here
         if (correctSecretCode) {
           this._router.navigate(['Student-dashboard']);
+          this.errorState.secretCodeError = false;
         } else {
           this.errorState.secretCodeError = true;
         }
@@ -111,6 +114,11 @@ export class ClassroomService {
 
     this.socket.on('studentsCloseClass', () => {
       this._router.navigate(['Menu']);
+      // when you close the class, you want to set the ready status back to false
+      this.isStudentReady.status = false;
+      this.totalNumberOfReadyStudents.number = 0;
+      // trying an alternative solution first
+      // this.studentConnections.number = 0
     })
 
     // ========================== Ready  =============================
@@ -154,8 +162,8 @@ instructorCallReady(){
   this.socket.emit('instructorCallReady')
 }
 closeClass(){
-  console.log('Closing Class: ', this.room);
-  this.socket.emit('closeClass', this.room );
+  console.log('Closing Class: ');
+  this.socket.emit('closeClass');
   // server sockets receive closeroom and then emits out to students to close their room as well
 
   // considering not storing anything on the client side and removing room
