@@ -22,14 +22,6 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
       <p class="">OR IF YOU'RE THE INSTRUCTOR OF A CLASS START A CLASS WITH THE BUTTON BELOW</p>
       <button (click)="createClass()" class="ui  button wideButton">Create Class</button>
     </div>
-
-
-    <div class="ui animated button" tabindex="0">
-  <div class="visible content">Next</div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
-</div>
   `,
 })
 
