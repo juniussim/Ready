@@ -16,7 +16,7 @@ import { StudentConnections } from './interface';
   <h4>Secret Code: {{secretCode}}</h4>
   <h4>{{studentConnections.number}} students here</h4>
   <button (click)="areYouReady()">Are You Ready?</button>
-  <button (click)="closeRoom()">Close Room</button>
+  <button (click)="closeClass()">Close Room</button>
   `
   // directives: [InstructorTrafficComponent],
 })
@@ -43,9 +43,9 @@ export class InstructorDashboardComponent {
     // and in the service (listen for an emit)
     // in the emit (reroute the student into student ready)
   }
-  closeRoom(){
+  closeClass(){
     this._router.navigate(['Menu']);
-    this._classroomService.closeRoom()
+    this._classroomService.closeClass()
   }
   // end of class
 }

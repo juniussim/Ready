@@ -43,15 +43,15 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     // and in the service (listen for an emit)
                     // in the emit (reroute the student into student ready)
                 };
-                InstructorDashboardComponent.prototype.closeRoom = function () {
+                InstructorDashboardComponent.prototype.closeClass = function () {
                     this._router.navigate(['Menu']);
-                    this._classroomService.closeRoom();
+                    this._classroomService.closeClass();
                 };
                 InstructorDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'instructor-dashboard',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <h4>{{studentConnections.number}} students here</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeRoom()\">Close Room</button>\n  "
+                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <h4>{{studentConnections.number}} students here</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeClass()\">Close Room</button>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorDashboardComponent);

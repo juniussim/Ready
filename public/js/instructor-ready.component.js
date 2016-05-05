@@ -32,13 +32,23 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
                     // end of constructor
                 }
-                InstructorReadyComponent.prototype.instructorContinue = function () {
+                InstructorReadyComponent.prototype.instructorEndsReadySession = function () {
+                    this._router.navigate(['Instructor-dashboard']);
+                    this.totalNumberOfReadyStudents.number = 0;
+                    this._classroomService.instructorEndsReadySession();
+                    //JUNIUS THIS IS WHAT I DID, HAVENT TEST THOUGH:
+                    // redirect instructor to instructor dashboard
+                    //resets total ready students
+                    //emits instructorEndsReadySession
+                    //server listens for instructorEndsReadySession, broadcasts to room: studentsEndReadySession
+                    //students on studentsEndReadySession, redirect to student dashboard, reset student ready status to default/false
+                    //update total ready students (need to send to server?)
                 };
                 InstructorReadyComponent = __decorate([
                     core_1.Component({
                         selector: 'instructor-ready',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n  <button (click)=\"instructorContinue()\">Continue</button>\n  ",
+                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n  <button (click)=\"instructorEndsReadySession()\">Continue</button>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorReadyComponent);

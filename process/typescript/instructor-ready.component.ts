@@ -15,7 +15,7 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
   <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>
   <h4>STUDENTS ARE READY</h4>
   <canvas id="myChart" width="400" height="400"></canvas>
-  <button (click)="instructorContinue()">Continue</button>
+  <button (click)="instructorEndsReadySession()">Continue</button>
   `,
 })
 
@@ -30,7 +30,18 @@ export class InstructorReadyComponent {
     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
   // end of constructor
   }
-  instructorContinue(){
-    
+  instructorEndsReadySession(){
+    this._router.navigate(['Instructor-dashboard']);
+    this.totalNumberOfReadyStudents.number = 0;
+    this._classroomService.instructorEndsReadySession();
+
+    //JUNIUS THIS IS WHAT I DID, HAVENT TEST THOUGH:
+
+    // redirect instructor to instructor dashboard
+    //resets total ready students
+    //emits instructorEndsReadySession
+    //server listens for instructorEndsReadySession, broadcasts to room: studentsEndReadySession
+    //students on studentsEndReadySession, redirect to student dashboard, reset student ready status to default/false
+    //update total ready students (need to send to server?)
   }
 }

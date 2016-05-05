@@ -80,6 +80,9 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.socket.on('startStudentReady', function () {
                         _this._router.navigate(['Student-ready']);
                     });
+                    this.socket.on('studentsCloseClass', function () {
+                        _this._router.navigate(['Menu']);
+                    });
                     // ========================== Ready  =============================
                     this.socket.on('updateStudentReady', function (totalNumberOfReadyStudents) {
                         console.log("number of students are ready", totalNumberOfReadyStudents);
@@ -93,6 +96,12 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         console.log('We received your lovely not ready response my young padawan');
                         _this.isStudentReady.status = false;
                     });
+                    this.socket.on('studentsEndReadySession', function () {
+                        _this._router.navigate(['Student-dashboard']);
+                        _this.isStudentReady.status = false;
+                        _this.totalNumberOfReadyStudents.number = 0;
+                    });
+                    //update total ready students (need to send to server?)
                     // end of constructor braces
                 }
                 // ================================== Accessor (Getter) Functions ==================================
@@ -127,18 +136,21 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     console.log("instructor pressed ARE YOU READY");
                     this.socket.emit('instructorCallReady');
                 };
-                ClassroomService.prototype.closeRoom = function () {
-                    console.log('Closing Room: ', this.room);
-                    this.socket.emit('closeRoom', this.room);
-                    // we don't necessarily need this, what is the best practice
-                    this.room = {
-                        name: null,
-                        secretCode: null,
-                    };
+                ClassroomService.prototype.closeClass = function () {
+                    console.log('Closing Class: ', this.room);
+                    this.socket.emit('closeClass', this.room);
+                    // server sockets receive closeroom and then emits out to students to close their room as well
+                    // considering not storing anything on the client side and removing room
+                    // we don't necessarily need this because when someone joins the room in future, he would create a new room and the existing room stored on the client side will be overwritten
+                    // this.room = {
+                    //   name: null,
+                    //   secretCode: null,
+                    // };
                 };
-                // use the server to emit to all those in the room (excluding instructor) - use broadcast
-                // and in the service (listen for an emit)
-                // in the emit (reroute the student into student ready)
+                // Instructor Ready Component
+                ClassroomService.prototype.instructorEndsReadySession = function () {
+                    this.socket.emit('instructorEndsReadySession');
+                };
                 // Student Profile Component
                 ClassroomService.prototype.submitProfileName = function (profileName) {
                     console.log('My profile name is: ', profileName);
@@ -150,6 +162,11 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 ClassroomService.prototype.submitSecretCode = function (secretCode) {
                     console.log('Secret Code is: ', secretCode);
                     this.socket.emit('submitSecretCode', secretCode);
+                };
+                // Student Dashboard Component
+                ClassroomService.prototype.leaveClass = function () {
+                    console.log("I'm leaving the class");
+                    this.socket.emit('studentLeaveClass');
                 };
                 // Student Ready Component
                 ClassroomService.prototype.studentReady = function () {

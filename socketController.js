@@ -51,9 +51,6 @@ function returnBackSecretCode(availableList, usedList, secretCode){
 
 // =================================== Socket Controller Functions =================================
 
-
-      // =================================== Instructor ===========================
-
 function connect(socket){
   //new connection, save the socket to them
   connections.push({id: socket.id});
@@ -76,6 +73,8 @@ function disconnect(socket){
   socket.disconnect();
 }
 
+      // =================================== Instructor ===========================
+
 function submitClassName(socket, className){
   // this connection guy does nothing yet (just put here in case)
   var room = {
@@ -91,24 +90,17 @@ function submitClassName(socket, className){
   socket.emit('createSecretCode', room)
 }
 
-// this is not completed yet
-function closeRoom(socket, room){
+function closeClass(socket, room){
   // we will receive the room object with secret code and name
   // we want to remove this room object from the room array
   // we want to remove the secret code from the usedCodeList
   // we want to add it back the secret code back to the availableList
   // var room = findRoom(room.secretCode);
   if (room){
-    rooms.splice(rooms.indexOf(room), 1);
-    // if (connection.user){
-      // socket.broadcast.emit("left", connection.user);
-      // socket.broadcast.emit("online", connections);
-      // console.log(`## ${connection.user.name}(${connection.id}) disconnected. Remaining: ${connections.length}.`);
-    // } else {
     console.log(`## Room (${room.name}) closed. Remaining: ${rooms.length}.`);
+    rooms.splice(rooms.indexOf(room), 1);
     returnBackSecretCode(availableCodeList,usedCodeList,room.secretCode);
-    // might want to broadcast some stuff
-    // }
+    socket.broadcast.to(room.secretCode).emit('studentsCloseClass')
   }
 }
 
@@ -122,7 +114,11 @@ function instructorCallReady(socket){
   socket.broadcast.to(room.secretCode).emit('startStudentReady')
 }
 
-
+function instructorEndsReadySession(socket, io){
+  let connection = findConnection(socket.id);
+  let room = findRoom(connection.secretCode);
+  socket.broadcast.to(room.secretCode).emit('studentsEndReadySession')
+}
       // =================================== Student ===========================
 
 function submitProfileName(socket, profileName){
@@ -146,7 +142,14 @@ function submitSecretCode(socket, secretCode, io){
     // emit him some message so that client knows that the secret code is wrong
     socket.emit('secretCodeExist', false)
   }
+}
 
+function studentLeaveClass(socket,io){
+  let connection = findConnection(socket.id);
+  var secretCodeOfPreviousRoom = connection.secretCode
+  connection.secretCode = ""
+  // change the name of the emit later (refactor it so that this guy and the guy above share the same emit)
+  io.to(secretCodeOfPreviousRoom).emit("newStudentConnection", (findNumberOfRoomConnections(secretCodeOfPreviousRoom)-1))
 }
 
 function studentReady(socket,io){
@@ -185,9 +188,11 @@ module.exports = {
   connect: connect,
   disconnect: disconnect,
   submitClassName: submitClassName,
-  closeRoom: closeRoom,
+  closeClass: closeClass,
+  instructorEndsReadySession: instructorEndsReadySession,
   submitProfileName: submitProfileName,
   submitSecretCode: submitSecretCode,
+  studentLeaveClass: studentLeaveClass,
   instructorCallReady: instructorCallReady,
   studentReady: studentReady,
   studentNotReady: studentNotReady

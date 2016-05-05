@@ -63,8 +63,8 @@ io.on("connection", (socket) => {
     socketController.submitClassName(socket, className);
   })
 
-  socket.on('closeRoom', (room) => {
-    socketController.closeRoom(socket, room);
+  socket.on('closeClass', (room) => {
+    socketController.closeClass(socket, room);
   })
 
   // STUDENT SOCKET
@@ -76,8 +76,18 @@ io.on("connection", (socket) => {
     socketController.submitSecretCode(socket, secretCode, io);
   })
 
+  // STUDENT SOCKET
+
   socket.on('instructorCallReady', () => {
     socketController.instructorCallReady(socket);
+  })
+
+  socket.on('instructorEndsReadySession', () => {
+    socketController.instructorEndsReadySession(socket, io);
+  })
+
+  socket.on('studentLeaveClass', () => {
+    socketController.studentLeaveClass(socket,io);
   })
 
   socket.on('studentReady', () => {
@@ -87,10 +97,6 @@ io.on("connection", (socket) => {
   socket.on('studentNotReady', () => {
     socketController.studentNotReady(socket,io);
   })
-// list of secret codes
 
-// student submit secret code
-// if secret code exist
-// let him join room
-
+// End of io on connection
 });

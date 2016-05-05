@@ -11,6 +11,7 @@ import { Room, User, ErrorState, StudentConnections, TotalNumberOfReadyStudents,
 @Injectable()
 export class ClassroomService {
   socket;
+  // we might be able to refactor and remove this room property since each socket connection has a secret code in the server side which can be used to find the room
   room: Room;
   user: User;
   // the reason why we use errorState as a object and not a boolean is because we want to take advantage of the reference vs copy concept
@@ -104,6 +105,10 @@ export class ClassroomService {
       this._router.navigate(['Student-ready']);
     })
 
+    this.socket.on('studentsCloseClass', () => {
+      this._router.navigate(['Menu']);
+    })
+
     // ========================== Ready  =============================
     this.socket.on('updateStudentReady', (totalNumberOfReadyStudents) => {
       console.log("number of students are ready", totalNumberOfReadyStudents);
@@ -120,6 +125,15 @@ export class ClassroomService {
       this.isStudentReady.status = false;
     });
 
+    this.socket.on('studentsEndReadySession', () => {
+      this._router.navigate(['Student-dashboard']);
+      this.isStudentReady.status = false;
+      this.totalNumberOfReadyStudents.number = 0;
+    })
+
+    //update total ready students (need to send to server?)
+
+
   // end of constructor braces
   }
 
@@ -135,18 +149,23 @@ instructorCallReady(){
   console.log("instructor pressed ARE YOU READY")
   this.socket.emit('instructorCallReady')
 }
-closeRoom(){
-  console.log('Closing Room: ', this.room);
-  this.socket.emit('closeRoom', this.room );
-  // we don't necessarily need this, what is the best practice
-  this.room = {
-    name: null,
-    secretCode: null,
-  };
+closeClass(){
+  console.log('Closing Class: ', this.room);
+  this.socket.emit('closeClass', this.room );
+  // server sockets receive closeroom and then emits out to students to close their room as well
+
+  // considering not storing anything on the client side and removing room
+  // we don't necessarily need this because when someone joins the room in future, he would create a new room and the existing room stored on the client side will be overwritten
+  // this.room = {
+  //   name: null,
+  //   secretCode: null,
+  // };
 }
-// use the server to emit to all those in the room (excluding instructor) - use broadcast
-// and in the service (listen for an emit)
-// in the emit (reroute the student into student ready)
+
+// Instructor Ready Component
+instructorEndsReadySession(){
+  this.socket.emit('instructorEndsReadySession')
+}
 
 // Student Profile Component
 submitProfileName(profileName){
@@ -161,6 +180,13 @@ submitSecretCode(secretCode){
   console.log('Secret Code is: ', secretCode);
   this.socket.emit('submitSecretCode', secretCode)
 }
+
+// Student Dashboard Component
+leaveClass(){
+  console.log("I'm leaving the class");
+  this.socket.emit('studentLeaveClass')
+}
+
 
 // Student Ready Component
 studentReady(){

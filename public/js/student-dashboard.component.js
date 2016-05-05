@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './student-traffic.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './student-traffic.component', './classroom.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './student-traffic.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, student_traffic_component_1;
+    var core_1, router_1, student_traffic_component_1, classroom_service_1;
     var StudentDashboardComponent;
     return {
         setters:[
@@ -22,22 +22,33 @@ System.register(['angular2/core', 'angular2/router', './student-traffic.componen
             },
             function (student_traffic_component_1_1) {
                 student_traffic_component_1 = student_traffic_component_1_1;
+            },
+            function (classroom_service_1_1) {
+                classroom_service_1 = classroom_service_1_1;
             }],
         execute: function() {
-            // import { ClassroomService } from './classroom.service';
             StudentDashboardComponent = (function () {
-                function StudentDashboardComponent(_router) {
+                function StudentDashboardComponent(_router, _classroomService) {
                     this._router = _router;
+                    this._classroomService = _classroomService;
                     // end of constructor
                 }
+                StudentDashboardComponent.prototype.leaveClass = function () {
+                    this._router.navigate(['Menu']);
+                    this._classroomService.leaveClass();
+                    // redirect the student back to menu
+                    // emit to server to inform server that the student is no longer in the room/class
+                    // this would reduce the totalNumberOfStudentConnections
+                    // By removing secretCode from the connection
+                };
                 StudentDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'student-dashboard',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentDashboard Component</h1>\n  <student-traffic></student-traffic>\n  ",
+                        template: "\n  <h1>StudentDashboard Component</h1>\n  <student-traffic></student-traffic>\n  <button (click)=\"leaveClass()\">Leave Room</button>\n  ",
                         directives: [student_traffic_component_1.StudentTrafficComponent],
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], StudentDashboardComponent);
                 return StudentDashboardComponent;
             }());
