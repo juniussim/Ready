@@ -9,16 +9,27 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
 @Component({
   selector: 'instructor-ready',
   styles: [`
-    .chicken {
+    h1 {
+      font-size: 4em;
     }
+    #sinceStart {
+      margin-top: -0.5em !important;
+   }
   `],
   template: `
-  <h1>InstructorReady Component</h1>
-  <h1>Are You Ready</h1>
-  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>
-  <h4>STUDENTS ARE READY</h4>
-  <timer></timer>
-  <button (click)="instructorEndsReadySession()">Continue</button>
+  <menu title="Angular2" class="ui fluid one item  menu navPanel">
+    <a class="item navHeader">ARE YOU READY?</a>
+  </menu>
+
+  <div class="contentBody">
+    <h1>{{totalNumberOfReadyStudents.number}} / {{studentConnections.number}}</h1>
+    <p class="paragraphText ui">STUDENTS ARE READY</p>
+    <br>
+    <timer>00:00</timer>
+    <p id="sinceStart">SINCE START</p>
+    <br>
+    <button (click)="instructorEndsReadySession()" class="ui  button wideButton">Continue with lesson</button>
+  </div>
   `,
   directives: [TimerComponent]
 })

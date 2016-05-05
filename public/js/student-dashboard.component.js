@@ -31,6 +31,7 @@ System.register(['angular2/core', 'angular2/router', './student-traffic.componen
                 function StudentDashboardComponent(_router, _classroomService) {
                     this._router = _router;
                     this._classroomService = _classroomService;
+                    this.room = this._classroomService.getRoom();
                     // end of constructor
                 }
                 StudentDashboardComponent.prototype.leaveClass = function () {
@@ -44,8 +45,8 @@ System.register(['angular2/core', 'angular2/router', './student-traffic.componen
                 StudentDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'student-dashboard',
-                        styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentDashboard Component</h1>\n  <student-traffic></student-traffic>\n  <button (click)=\"leaveClass()\">Leave Room</button>\n  ",
+                        styles: ["\n     #studentSecretCode {\n       margin-top: -0.1em;\n       margin-bottom: 0.7em;\n       background-color: white;\n       border: 2px solid black;\n       font-size: 1.5em !important;\n       padding: 0.3em;\n    }\n  "],
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n    <a class=\"item navHeader\">{{room.name}}</a>\n  </menu>\n\n  <div class=\"contentBody\">\n     <h1>SECRET CODE: </h1>\n     <h1 id=\"studentSecretCode\">{{room.secretCode}}</h1>\n     <p class=\"paragraphText ui\">YOUR CLASMATES CAN JOIN THE ROOM USING THIS CODE</p>\n     <br>\n     <p class=\"paragraphText ui\">WAITING FOR YOUR TEACHER'S READY PING</p>\n     <br>\n    <button (click)=\"leaveClass()\" class=\"ui  button wideButton\">Leave Room</button>\n  </div>\n\n  ",
                         directives: [student_traffic_component_1.StudentTrafficComponent],
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])

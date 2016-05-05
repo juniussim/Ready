@@ -45,8 +45,8 @@ System.register(['angular2/core', 'angular2/router', './timer.component', './cla
                 StudentReadyComponent = __decorate([
                     core_1.Component({
                         selector: 'student-ready',
-                        styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentReady Component</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <div [ngSwitch]=\"isStudentReady.status\">\n      <button *ngSwitchWhen=\"false\" (click)=\"studentReady()\">I'm ready</button>\n      <button *ngSwitchWhen=\"true\" (click)=\"studentNotReady()\">Actually, I need more time</button>\n  </div>\n  <timer></timer>\n  ",
+                        styles: ["\n     h1 {\n      font-size: 4em;\n    }\n    #sinceStart {\n      margin-top: -0.5em !important;\n   }\n  "],
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n    <a class=\"item navHeader\">ARE YOU READY?</a>\n  </menu>\n\n  <div class=\"contentBody\">\n    <h1>{{totalNumberOfReadyStudents.number}} / {{studentConnections.number}}</h1>\n    <p class=\"paragraphText ui\">STUDENTS ARE READY</p>\n    <br>\n    <timer>00:00</timer>\n    <p>SINCE START</p>\n    <br>\n    <div [ngSwitch]=\"isStudentReady.status\">\n        <button *ngSwitchWhen=\"false\" class=\"ui  button wideButton\" (click)=\"studentReady()\">I'm ready</button>\n        <button *ngSwitchWhen=\"true\" class=\"ui  button wideButton\" (click)=\"studentNotReady()\">Actually, I need more time</button>\n        <p *ngSwitchWhen=\"true\" class=\"paragraphText ui\">WAITING FOR TEACHER TO CONTINUE CLASS</p>\n    </div>\n  </div>\n  ",
                         directives: [timer_component_1.TimerComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])

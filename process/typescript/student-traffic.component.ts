@@ -10,7 +10,6 @@ import { Router } from 'angular2/router';
     }
   `],
   template: `
-  <h1>StudentTraffic Component</h1>
   `,
 })
 

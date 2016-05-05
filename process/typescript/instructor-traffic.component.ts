@@ -9,7 +9,6 @@ import { Router } from 'angular2/router';
     }
   `],
   template: `
-  <h1>InstructorTraffic Component</h1>
   `,
 })
 

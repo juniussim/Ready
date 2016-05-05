@@ -53,8 +53,8 @@ System.register(['angular2/core', 'angular2/router', './timer.component', './cla
                 InstructorReadyComponent = __decorate([
                     core_1.Component({
                         selector: 'instructor-ready',
-                        styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <timer></timer>\n  <button (click)=\"instructorEndsReadySession()\">Continue</button>\n  ",
+                        styles: ["\n    h1 {\n      font-size: 4em;\n    }\n    #sinceStart {\n      margin-top: -0.5em !important;\n   }\n  "],
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n    <a class=\"item navHeader\">ARE YOU READY?</a>\n  </menu>\n\n  <div class=\"contentBody\">\n    <h1>{{totalNumberOfReadyStudents.number}} / {{studentConnections.number}}</h1>\n    <p class=\"paragraphText ui\">STUDENTS ARE READY</p>\n    <br>\n    <timer>00:00</timer>\n    <p id=\"sinceStart\">SINCE START</p>\n    <br>\n    <button (click)=\"instructorEndsReadySession()\" class=\"ui  button wideButton\">Continue with lesson</button>\n  </div>\n  ",
                         directives: [timer_component_1.TimerComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])

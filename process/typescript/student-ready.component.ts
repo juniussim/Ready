@@ -9,18 +9,31 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
 @Component({
   selector: 'student-ready',
   styles: [`
-    .chicken {
+     h1 {
+      font-size: 4em;
     }
+    #sinceStart {
+      margin-top: -0.5em !important;
+   }
   `],
   template: `
-  <h1>StudentReady Component</h1>
-  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>
-  <h4>STUDENTS ARE READY</h4>
-  <div [ngSwitch]="isStudentReady.status">
-      <button *ngSwitchWhen="false" (click)="studentReady()">I'm ready</button>
-      <button *ngSwitchWhen="true" (click)="studentNotReady()">Actually, I need more time</button>
+  <menu title="Angular2" class="ui fluid one item  menu navPanel">
+    <a class="item navHeader">ARE YOU READY?</a>
+  </menu>
+
+  <div class="contentBody">
+    <h1>{{totalNumberOfReadyStudents.number}} / {{studentConnections.number}}</h1>
+    <p class="paragraphText ui">STUDENTS ARE READY</p>
+    <br>
+    <timer>00:00</timer>
+    <p>SINCE START</p>
+    <br>
+    <div [ngSwitch]="isStudentReady.status">
+        <button *ngSwitchWhen="false" class="ui  button wideButton" (click)="studentReady()">I'm ready</button>
+        <button *ngSwitchWhen="true" class="ui  button wideButton" (click)="studentNotReady()">Actually, I need more time</button>
+        <p *ngSwitchWhen="true" class="paragraphText ui">WAITING FOR TEACHER TO CONTINUE CLASS</p>
+    </div>
   </div>
-  <timer></timer>
   `,
   directives: [TimerComponent]
 })

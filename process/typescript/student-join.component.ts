@@ -10,11 +10,15 @@ import { ErrorState } from './interface';
     }
   `],
   template: `
-  <h1>StudentJoin Component</h1>
-  <input type="text" [(ngModel)]="inputValue" placeholder="Enter Secret Code" autocomplete="off" required autofocus />
-  <button [disabled]="!inputValue" (click)="submitSecretCode(inputValue)" >LET'S GO</button>
-  <div *ngIf="errorCodeState.secretCodeError">
-    <p>You can keep guessing or you can ask the instructor</p>
+  <menu title="Angular2" class="ui fluid one item  menu navPanel">
+     <a class="item navHeader">Ready</a>
+  </menu>
+  <div class="contentBody">
+      <input type="text" [(ngModel)]="inputValue" placeholder="Enter Secret Code" autocomplete="off" required autofocus />
+      <button [disabled]="!inputValue" class="ui  button wideButton" (click)="submitSecretCode(inputValue)">LET'S GO!</button>
+      <div *ngIf="errorCodeState.secretCodeError">
+        <p class="paragraphText ui">You can keep guessing or you can stare at your Instructor till </p>
+      </div>
   </div>
   `,
 })

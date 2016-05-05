@@ -97,11 +97,13 @@ export class ClassroomService {
 
     // ================================== Student ==================================
 
-    this.socket.on('secretCodeExist', (correctSecretCode) => {
+    this.socket.on('secretCodeExist', (correctSecretCodeWithObject) => {
         // we want to do the room entry logic here
-        if (correctSecretCode) {
+        if (correctSecretCodeWithObject.secretCodeExist) {
           this._router.navigate(['Student-dashboard']);
           this.errorState.secretCodeError = false;
+          // =>> added this shit in when we were sleepy
+          this.room = correctSecretCodeWithObject.room;
         } else {
           this.errorState.secretCodeError = true;
         }

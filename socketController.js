@@ -194,7 +194,8 @@ function submitSecretCode(socket, secretCode, io){
       connection.userType = "student"
       socket.join(room.secretCode)
       // emit something back so that we can route him to the next page
-      socket.emit('secretCodeExist', true)
+      // =>> added this shit in when we were sleepy
+      socket.emit('secretCodeExist', {secretCodeExist: true, room: room})
       // connections should be number of sockets who are joined to the room - 1 (instructor)
       io.to(room.secretCode).emit("updateNumberOfRoomConnections", (findNumberOfRoomConnections(secretCode)-1));
     }

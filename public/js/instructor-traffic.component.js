@@ -31,7 +31,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     core_1.Component({
                         selector: 'instructor-traffic',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorTraffic Component</h1>\n  ",
+                        template: "\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], InstructorTrafficComponent);
