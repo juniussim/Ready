@@ -1,5 +1,8 @@
-import { Component } from 'angular2/core';
+import { Component, OnInit, OnChanges } from 'angular2/core';
 import { Router } from 'angular2/router';
+
+import { TimerComponent } from './timer.component'
+
 import { ClassroomService } from './classroom.service';
 import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
 
@@ -14,12 +17,13 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
   <h1>Are You Ready</h1>
   <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>
   <h4>STUDENTS ARE READY</h4>
-  <canvas id="myChart" width="400" height="400"></canvas>
+  <timer></timer>
   <button (click)="instructorEndsReadySession()">Continue</button>
   `,
+  directives: [TimerComponent]
 })
 
-export class InstructorReadyComponent {
+export class InstructorReadyComponent implements OnInit {
   studentConnections: StudentConnections;
   totalNumberOfReadyStudents: TotalNumberOfReadyStudents;
   constructor(
@@ -30,11 +34,14 @@ export class InstructorReadyComponent {
     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
   // end of constructor
   }
-  instructorEndsReadySession(){
+   ngOnInit(){
+      //initialize PLOTLY.JS
+   }
+   instructorEndsReadySession(){
+
     this._router.navigate(['Instructor-dashboard']);
     this.totalNumberOfReadyStudents.number = 0;
     this._classroomService.instructorEndsReadySession();
-
     //JUNIUS THIS IS WHAT I DID, HAVENT TEST THOUGH:
 
     // redirect instructor to instructor dashboard

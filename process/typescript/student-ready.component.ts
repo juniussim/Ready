@@ -1,5 +1,8 @@
 import { Component } from 'angular2/core';
 import { Router } from 'angular2/router';
+
+import { TimerComponent } from './timer.component'
+
 import { ClassroomService } from './classroom.service';
 import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from './interface';
 
@@ -17,7 +20,9 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
       <button *ngSwitchWhen="false" (click)="studentReady()">I'm ready</button>
       <button *ngSwitchWhen="true" (click)="studentNotReady()">Actually, I need more time</button>
   </div>
+  <timer></timer>
   `,
+  directives: [TimerComponent]
 })
 
 export class StudentReadyComponent {

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './classroom.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './timer.component', './classroom.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, classroom_service_1;
+    var core_1, router_1, timer_component_1, classroom_service_1;
     var InstructorReadyComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (timer_component_1_1) {
+                timer_component_1 = timer_component_1_1;
             },
             function (classroom_service_1_1) {
                 classroom_service_1 = classroom_service_1_1;
@@ -32,6 +35,9 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
                     // end of constructor
                 }
+                InstructorReadyComponent.prototype.ngOnInit = function () {
+                    //initialize PLOTLY.JS
+                };
                 InstructorReadyComponent.prototype.instructorEndsReadySession = function () {
                     this._router.navigate(['Instructor-dashboard']);
                     this.totalNumberOfReadyStudents.number = 0;
@@ -48,7 +54,8 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'instructor-ready',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n  <button (click)=\"instructorEndsReadySession()\">Continue</button>\n  ",
+                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <timer></timer>\n  <button (click)=\"instructorEndsReadySession()\">Continue</button>\n  ",
+                        directives: [timer_component_1.TimerComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorReadyComponent);
