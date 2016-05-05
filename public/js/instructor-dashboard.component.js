@@ -50,8 +50,8 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                 InstructorDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'instructor-dashboard',
-                        styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <h4>{{studentConnections.number}} students here</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeClass()\">Close Room</button>\n  "
+                        styles: ["\n    #instructorSecretCode {\n      margin-top: -0.1em;\n      margin-bottom: 0.7em;\n      background-color: white;\n      border: 2px solid black;\n      font-size: 2.2em !important;\n      padding: 0.3em;\n    }\n  "],
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n    <a class=\"item navHeader\">{{name}}</a>\n  </menu>\n\n  <div class=\"contentBody\">\n    <h2>SECRET CODE: </h2>\n    <h1 id=\"instructorSecretCode\">{{secretCode}}</h1>\n    <p class=\"paragraphText ui\">ASK YOUR STUDENTS TO JOIN THE ROOM USING THIS CODE</p>\n    <br>\n    <button (click)=\"areYouReady()\" class=\"ui  button wideButton\">Are You Ready?</button>\n    <button (click)=\"closeClass()\" class=\"ui  button wideButton\">Close Room</button>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorDashboardComponent);

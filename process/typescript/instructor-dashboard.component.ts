@@ -7,16 +7,28 @@ import { StudentConnections } from './interface';
 @Component({
   selector: 'instructor-dashboard',
   styles: [`
-    .chicken {
+    #instructorSecretCode {
+      margin-top: -0.1em;
+      margin-bottom: 0.7em;
+      background-color: white;
+      border: 2px solid black;
+      font-size: 2.2em !important;
+      padding: 0.3em;
     }
   `],
   template: `
-  <h1>InstructorDashboard Component</h1>
-  <h1>{{name}}</h1>
-  <h4>Secret Code: {{secretCode}}</h4>
-  <h4>{{studentConnections.number}} students here</h4>
-  <button (click)="areYouReady()">Are You Ready?</button>
-  <button (click)="closeClass()">Close Room</button>
+  <menu title="Angular2" class="ui fluid one item  menu navPanel">
+    <a class="item navHeader">{{name}}</a>
+  </menu>
+
+  <div class="contentBody">
+    <h2>SECRET CODE: </h2>
+    <h1 id="instructorSecretCode">{{secretCode}}</h1>
+    <p class="paragraphText ui">ASK YOUR STUDENTS TO JOIN THE ROOM USING THIS CODE</p>
+    <br>
+    <button (click)="areYouReady()" class="ui  button wideButton">Are You Ready?</button>
+    <button (click)="closeClass()" class="ui  button wideButton">Close Room</button>
+  </div>
   `
   // directives: [InstructorTrafficComponent],
 })

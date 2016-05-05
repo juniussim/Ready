@@ -70,11 +70,13 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         _this.studentConnections.number = studentConnections;
                     });
                     // ================================== Student ==================================
-                    this.socket.on('secretCodeExist', function (correctSecretCode) {
+                    this.socket.on('secretCodeExist', function (correctSecretCodeWithObject) {
                         // we want to do the room entry logic here
-                        if (correctSecretCode) {
+                        if (correctSecretCodeWithObject.secretCodeExist) {
                             _this._router.navigate(['Student-dashboard']);
                             _this.errorState.secretCodeError = false;
+                            // =>> added this shit in when we were sleepy
+                            _this.room = correctSecretCodeWithObject.room;
                         }
                         else {
                             _this.errorState.secretCodeError = true;

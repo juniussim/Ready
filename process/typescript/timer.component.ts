@@ -22,14 +22,15 @@ export class TimerComponent implements OnInit, OnDestroy{
   }
    ngOnInit(){
       var startedTimer = Date.now();
-
+      document.getElementById("seconds").innerHTML = '00';
+      document.getElementById("minutes").innerHTML = '00';
 
       function returnTimerNumber ( secPassed ) { return secPassed > 9 ? secPassed : "0" + secPassed; };
 
       this.timer = setInterval( goTimer, 1000);
 
       function goTimer(){
-         var secPassed = Math.ceil((Date.now() - startedTimer) / 1000);
+         var secPassed = Math.floor((Date.now() - startedTimer) / 1000);
          document.getElementById("seconds").innerHTML = returnTimerNumber(secPassed%60);
          document.getElementById("minutes").innerHTML = returnTimerNumber(parseInt(secPassed/60,10));
       }

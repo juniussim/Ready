@@ -47,7 +47,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'student-join',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentJoin Component</h1>\n  <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Secret Code\" autocomplete=\"off\" required autofocus />\n  <button [disabled]=\"!inputValue\" (click)=\"submitSecretCode(inputValue)\" >LET'S GO</button>\n  <div *ngIf=\"errorCodeState.secretCodeError\">\n    <p>You can keep guessing or you can ask the instructor</p>\n  </div>\n  ",
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n     <a class=\"item navHeader\">Ready</a>\n  </menu>\n  <div class=\"contentBody\">\n      <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Secret Code\" autocomplete=\"off\" required autofocus />\n      <button [disabled]=\"!inputValue\" class=\"ui  button wideButton\" (click)=\"submitSecretCode(inputValue)\">LET'S GO!</button>\n      <div *ngIf=\"errorCodeState.secretCodeError\">\n        <p class=\"paragraphText ui\">You can keep guessing or you can stare at your Instructor till </p>\n      </div>\n  </div>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], StudentJoinComponent);

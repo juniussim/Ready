@@ -9,9 +9,13 @@ import { ClassroomService } from './classroom.service';
     }
   `],
   template: `
-  <h1>StudentProfile Component</h1>
-  <input type="text" [(ngModel)]="inputValue" placeholder="Enter Your Name" autocomplete="off" required autofocus />
-  <button [disabled]="!inputValue" (click)="submitProfileName(inputValue)">CONTINUE</button>
+   <menu title="Angular2" class="ui fluid one item  menu navPanel">
+      <a class="item navHeader">Ready</a>
+   </menu>
+   <div class="contentBody">
+     <input type="text" [(ngModel)]="inputValue" placeholder="What's Your Name?" autocomplete="off" required autofocus />
+     <button [disabled]="!inputValue" class="ui  button wideButton" (click)="submitProfileName(inputValue)">CONTINUE</button>
+   </div>
   `,
 })
 
