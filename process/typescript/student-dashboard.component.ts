@@ -23,9 +23,10 @@ import { StudentConnections, Room } from './interface';
   </menu>
 
   <div class="contentBody">
-     <h1>SECRET CODE: </h1>
+     <br>
+     <p class="paragraphText ui">YOUR CLASMATES CAN JOIN THE ROOM USING THIS CODE:</p>
      <h1 id="studentSecretCode">{{room.secretCode}}</h1>
-     <p class="paragraphText ui">YOUR CLASMATES CAN JOIN THE ROOM USING THIS CODE</p>
+     <h1>STUDENTS IN ROOM:  {{studentConnections.number}}</h1>
      <br>
      <p class="paragraphText ui">WAITING FOR YOUR TEACHER'S READY PING</p>
      <br>
@@ -46,6 +47,7 @@ export class StudentDashboardComponent {
     private _classroomService: ClassroomService
   ){
      this.room = this._classroomService.getRoom()
+     this.studentConnections = this._classroomService.getStudentConnections()
   // end of constructor
   }
   leaveClass(){
