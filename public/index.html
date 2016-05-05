@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <title>Tour of Heroes</title>
     <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +28,7 @@
     <script src="js/lib/angular2/angular2.dev.js"></script>
     <script src="js/lib/angular2/router.dev.js"></script>
 
+    <!-- why does this allow us to use semantic -->
     <!-- Semantic-UI -->
     <script src="js/lib/angular2/ng-semantic.js"></script>
     <!-- Module Loading with System.js -->
@@ -49,6 +49,8 @@
 
   <body>
     <!-- main entry point for our Angular2 App -->
-    <my-app><h1>🐳🐠Just Keep Swimming!🐬🐟</h1></my-app>
+    <div class="ui container">
+      <my-app><h1>🐳🐠Just Keep Swimming!🐬🐟</h1></my-app>
+    </div>
   </body>
 </html>

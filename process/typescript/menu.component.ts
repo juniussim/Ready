@@ -6,7 +6,7 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
 
 
 @Component({
-  selector: 'menu',
+  selector: 'readyMenu',
   directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES],
   styles: [`
     .chicken {
@@ -14,9 +14,19 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
     }
   `],
   template: `
-    <h1>Menu</h1>
-    <sm-button (click)="joinClass()" class="normal">Join Class</sm-button>
-    <sm-button (click)="createClass()" class="normal">Create Class</sm-button>
+  <sm-menu title="Angular2" class="ui fluid one item menu teal">
+    <a class="item">Ready</a>
+  </sm-menu>
+
+  <sm-button (click)="joinClass()" class="fluid">Join Class</sm-button>
+  <sm-button (click)="createClass()" class="ui fluid button">Create Class</button>
+
+  <div class="ui animated button" tabindex="0">
+    <div class="visible content">Next</div>
+    <div class="hidden content">
+      <i class="right arrow icon"></i>
+    </div>
+  </div>
   `,
 })
 

@@ -41,10 +41,10 @@ System.register(['angular2/core', 'angular2/router', './classroom.service', "ng-
                 };
                 MenuComponent = __decorate([
                     core_1.Component({
-                        selector: 'menu',
+                        selector: 'readyMenu',
                         directives: [ng_semantic_1.SEMANTIC_COMPONENTS, ng_semantic_1.SEMANTIC_DIRECTIVES],
                         styles: ["\n    .chicken {\n\n    }\n  "],
-                        template: "\n    <h1>Menu</h1>\n    <sm-button (click)=\"joinClass()\" class=\"normal\">Join Class</sm-button>\n    <sm-button (click)=\"createClass()\" class=\"normal\">Create Class</sm-button>\n  ",
+                        template: "\n  <sm-menu title=\"Angular2\" class=\"ui fluid one item menu teal\">\n    <a class=\"item\">Ready</a>\n  </sm-menu>\n\n  <sm-button (click)=\"joinClass()\" class=\"fluid\">Join Class</sm-button>\n  <sm-button (click)=\"createClass()\" class=\"ui fluid button\">Create Class</button>\n\n  <div class=\"ui animated button\" tabindex=\"0\">\n    <div class=\"visible content\">Next</div>\n    <div class=\"hidden content\">\n      <i class=\"right arrow icon\"></i>\n    </div>\n  </div>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], MenuComponent);
