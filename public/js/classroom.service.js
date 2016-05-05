@@ -50,19 +50,20 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.socket = io(window.location.host);
                     // ADD SOCKET EVENT LISTENERS
                     // We need this event listeners to be present the moment the component is created
-                    // ================================== Instructor ==================================
+                    // ================================== Both Instructor & Students ==================================
                     this.socket.on('connect', function () {
                         console.log('Connected to Chat Socket');
                     });
                     this.socket.on('disconnect', function () {
                         console.log('Disconnected from Chat Socket');
                     });
+                    // ================================== Instructor ==================================
                     this.socket.on('createSecretCode', function (room) {
                         console.log('Recieved Room Object:', room);
                         _this.room = room;
                         _this._router.navigate(['Instructor-dashboard']);
                     });
-                    this.socket.on('newStudentConnection', function (studentConnections) {
+                    this.socket.on('updateNumberOfRoomConnections', function (studentConnections) {
                         console.log('New student joined, total number of students: ', studentConnections);
                         _this.studentConnections.number = studentConnections;
                     });

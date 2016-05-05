@@ -72,19 +72,23 @@ export class ClassroomService {
     // ADD SOCKET EVENT LISTENERS
     // We need this event listeners to be present the moment the component is created
 
-    // ================================== Instructor ==================================
+    // ================================== Both Instructor & Students ==================================
+
     this.socket.on('connect', () => {
       console.log('Connected to Chat Socket');
     });
     this.socket.on('disconnect', () => {
       console.log('Disconnected from Chat Socket');
     });
+
+    // ================================== Instructor ==================================
+
     this.socket.on('createSecretCode', (room) => {
       console.log('Recieved Room Object:', room)
       this.room = room;
       this._router.navigate(['Instructor-dashboard']);
     })
-    this.socket.on('newStudentConnection', (studentConnections) => {
+    this.socket.on('updateNumberOfRoomConnections', (studentConnections) => {
       console.log('New student joined, total number of students: ', studentConnections)
       this.studentConnections.number = studentConnections;
     })
