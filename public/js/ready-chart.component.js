@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './classroom.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './classroom.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,43 +10,38 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, classroom_service_1;
-    var InstructorReadyComponent;
+    var core_1, classroom_service_1;
+    var ReadyChartComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
-            },
             function (classroom_service_1_1) {
                 classroom_service_1 = classroom_service_1_1;
             }],
         execute: function() {
-            InstructorReadyComponent = (function () {
-                function InstructorReadyComponent(_router, _classroomService) {
+            ReadyChartComponent = (function () {
+                function ReadyChartComponent(_router, _classroomService) {
                     this._router = _router;
                     this._classroomService = _classroomService;
                     this.studentConnections = this._classroomService.getStudentConnections();
                     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
                     // end of constructor
                 }
-                InstructorReadyComponent.prototype.instructorContinue = function () {
-                };
-                InstructorReadyComponent = __decorate([
+                ReadyChartComponent = __decorate([
                     core_1.Component({
-                        selector: 'instructor-ready',
+                        selector: 'ready-chart',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n  <button (click)=\"instructorContinue()\">Close Room</button>\n  ",
+                        template: "\n  <h3>Ready Chart</h3>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  ",
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
-                ], InstructorReadyComponent);
-                return InstructorReadyComponent;
+                    __metadata('design:paramtypes', [Object, classroom_service_1.ClassroomService])
+                ], ReadyChartComponent);
+                return ReadyChartComponent;
             }());
-            exports_1("InstructorReadyComponent", InstructorReadyComponent);
+            exports_1("ReadyChartComponent", ReadyChartComponent);
         }
     }
 });
 
-//# sourceMappingURL=instructor-ready.component.js.map
+//# sourceMappingURL=ready-chart.component.js.map

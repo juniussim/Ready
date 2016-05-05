@@ -14,7 +14,8 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
   <h1>Are You Ready</h1>
   <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>
   <h4>STUDENTS ARE READY</h4>
-
+  <canvas id="myChart" width="400" height="400"></canvas>
+  <button (click)="instructorContinue()">Close Room</button>
   `,
 })
 
@@ -29,4 +30,7 @@ export class InstructorReadyComponent {
     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
   // end of constructor
   }
+  instructorContinue(){
+     
+ }
 }

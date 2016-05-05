@@ -26,6 +26,12 @@
     <script src="js/lib/angular2/angular2.dev.js"></script>
     <script src="js/lib/angular2/router.dev.js"></script>
 
+   <!--Script for chart.js-->
+   <script src="Chart.js"></script>
+   <script>
+       var myChart = new Chart({...})
+   </script>
+
     <!-- Module Loading with System.js -->
     <script>
       System.config({
@@ -39,6 +45,7 @@
       System.import('js/bootstrap')
         .then(null, console.error.bind(console));
     </script>
+
   </head>
 
   <body>
