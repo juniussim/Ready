@@ -10,27 +10,47 @@ body {
 }
 
 .navHeader {
-  font-size: 1.5em;
+  padding-top: 0.4em !important;
+  padding-bottom: 0.4em !important;
+  font-size: 2.5em;
   color: #fff !important;
-  font-weight: 600 !important;
+  font-weight: 900 !important;
 }
 
-.flexBody {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
+.contentBody {
+  margin: 2.4em;
+  margin-top: 1.7em;
+  text-align: center;
 }
 
 .wideButton{
-  width: 80%;
+  width: 100%;
+  height: 3.6em;
+  font-size: 1.2em !important;
   background: #252525 !important;
   color: #fff !important;
   border-radius: 0px !important;
-  margin: 0px !important;
+  margin: 0em !important;
   text-transform: uppercase !important;
+  margin-bottom: 1.4em !important;
 }
 
-.paragraphColor{
+.paragraphText {
+  text-align: center !important;
   color: #252525 !important;
+  font-size: 1.25em;
+  line-height: 160%;
+  word-spacing: 1.5px;
+  text-align: left;
+  margin-bottom: 1.4em !important;
+}
+
+input {
+  width: 100%;
+  height: 3.6em;
+  text-align: center;
+  font-size: 1.2em !important;
+  font-weight: 900 !important;
+  margin-bottom: 1.7em;
+
 }

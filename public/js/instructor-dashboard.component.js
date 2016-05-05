@@ -51,7 +51,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'instructor-dashboard',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <h4>{{studentConnections.number}} students here</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeClass()\">Close Room</button>\n  "
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n    <a class=\"item navHeader\">Ready</a>\n  </menu>\n\n  <div class=\"contentBody\">\n    <p>ROOM: {{name}}</p>\n    <p class=\"paragraphText ui\">SECRET CODE: {{secretCode}}</p>\n    <button (click)=\"areYouReady()\" class=\"ui  button wideButton\">Are You Ready?</button>\n    <button (click)=\"closeClass()\" class=\"ui  button wideButton\">Close Room</button>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorDashboardComponent);

@@ -11,12 +11,16 @@ import { StudentConnections } from './interface';
     }
   `],
   template: `
-  <h1>InstructorDashboard Component</h1>
-  <h1>{{name}}</h1>
-  <h4>Secret Code: {{secretCode}}</h4>
-  <h4>{{studentConnections.number}} students here</h4>
-  <button (click)="areYouReady()">Are You Ready?</button>
-  <button (click)="closeClass()">Close Room</button>
+  <menu title="Angular2" class="ui fluid one item  menu navPanel">
+    <a class="item navHeader">Ready</a>
+  </menu>
+
+  <div class="contentBody">
+    <p>ROOM: {{name}}</p>
+    <p class="paragraphText ui">SECRET CODE: {{secretCode}}</p>
+    <button (click)="areYouReady()" class="ui  button wideButton">Are You Ready?</button>
+    <button (click)="closeClass()" class="ui  button wideButton">Close Room</button>
+  </div>
   `
   // directives: [InstructorTrafficComponent],
 })

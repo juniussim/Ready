@@ -44,7 +44,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service', "ng-
                         selector: 'readyMenu',
                         directives: [ng_semantic_1.SEMANTIC_COMPONENTS, ng_semantic_1.SEMANTIC_DIRECTIVES],
                         styles: ["\n    .chicken {\n\n    }\n  "],
-                        template: "\n    <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n      <a class=\"item navHeader\">Ready</a>\n    </menu>\n    <div class=\"flexBody\">\n      <button (click)=\"joinClass()\" class=\"ui  button wideButton\">Join Class</button>\n      <p class=\"\">OR IF YOU'RE THE INSTRUCTOR OF A CLASS START A CLASS WITH THE BUTTON BELOW</p>\n      <button (click)=\"createClass()\" class=\"ui  button wideButton\">Create Class</button>\n    </div>\n  ",
+                        template: "\n    <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n      <a class=\"item navHeader\">Ready</a>\n    </menu>\n    <div class=\"contentBody\">\n      <button (click)=\"joinClass()\" class=\"ui  button wideButton\">Join Class</button>\n      <p class=\"paragraphText ui\">OR IF YOU'RE THE INSTRUCTOR OF A CLASS, START A CLASS WITH THE BUTTON BELOW</p>\n      <button (click)=\"createClass()\" class=\"ui  button wideButton\">Create Class</button>\n    </div>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], MenuComponent);

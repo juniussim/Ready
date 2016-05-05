@@ -39,7 +39,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'instructor-class-name',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorClassName Component</h1>\n    <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Your Class Name\" autocomplete=\"off\" required autofocus />\n    <button [disabled]=\"!inputValue\" (click)=\"submitClassName(inputValue)\">LET'S GO</button>\n  ",
+                        template: "\n  <menu title=\"Angular2\" class=\"ui fluid one item  menu navPanel\">\n    <a class=\"item navHeader\">Ready</a>\n  </menu>\n  <div class=\"contentBody\">\n    <input type=\"text\" [(ngModel)]=\"inputValue\" placeholder=\"Enter Your Class Name\" autocomplete=\"off\" required autofocus />\n    <button class=\"ui button wideButton\" [disabled]=\"!inputValue\" (click)=\"submitClassName(inputValue)\">LET'S GO</button>\n  </div>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorClassNameComponent);
