@@ -1,13 +1,18 @@
 body {
-  background: #a7c8c8 !important;
+  background: #fafafa !important;
 }
 .container {
 
 }
 .navPanel {
-  background: #2b4b64 !important;
+  background: #3c7bbf !important;
   border-radius: 0px !important;
-  font-size: 3em;
+}
+
+.navHeader {
+  font-size: 1.5em;
+  color: #fff !important;
+  font-weight: 600 !important;
 }
 
 .flexBody {
@@ -19,6 +24,12 @@ body {
 
 .wideButton{
   width: 80%;
+  background: #252525 !important;
+  color: #fff !important;
   border-radius: none !important;
   margin: 0px !important;
+}
+
+.paragraphColor{
+  color: #252525 !important;
 }
