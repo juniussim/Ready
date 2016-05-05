@@ -1,0 +1,24 @@
+body {
+  background: #a7c8c8 !important;
+}
+.container {
+
+}
+.navPanel {
+  background: #2b4b64 !important;
+  border-radius: 0px !important;
+  font-size: 3em;
+}
+
+.flexBody {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.wideButton{
+  width: 80%;
+  border-radius: none !important;
+  margin: 0px !important;
+}
