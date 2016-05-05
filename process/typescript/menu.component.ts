@@ -2,16 +2,21 @@ import { Component } from 'angular2/core';
 import { Router } from 'angular2/router';
 import { ClassroomService } from './classroom.service';
 
+import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
+
+
 @Component({
   selector: 'menu',
+  directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES],
   styles: [`
     .chicken {
+
     }
   `],
   template: `
     <h1>Menu</h1>
-    <button (click)="joinClass()">Join Class</button>
-    <button (click)="createClass()">Create Class</button>
+    <sm-button (click)="joinClass()" class="normal">Join Class</sm-button>
+    <sm-button (click)="createClass()" class="normal">Create Class</sm-button>
   `,
 })
 
