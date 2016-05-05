@@ -25,3 +25,7 @@ export interface StudentConnections {
 export interface TotalNumberOfReadyStudents {
   number: number
 }
+
+export interface IsStudentReady {
+  status: boolean
+}

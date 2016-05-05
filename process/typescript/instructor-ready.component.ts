@@ -15,7 +15,7 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
   <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>
   <h4>STUDENTS ARE READY</h4>
   <canvas id="myChart" width="400" height="400"></canvas>
-  <button (click)="instructorContinue()">Close Room</button>
+  <button (click)="instructorContinue()">Continue</button>
   `,
 })
 
@@ -31,6 +31,6 @@ export class InstructorReadyComponent {
   // end of constructor
   }
   instructorContinue(){
-     
- }
+    
+  }
 }

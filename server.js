@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
   })
 
   socket.on('studentNotReady', () => {
-    socketController.studentNotReady(socket);
+    socketController.studentNotReady(socket,io);
   })
 // list of secret codes
 

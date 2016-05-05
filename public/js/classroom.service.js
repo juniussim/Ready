@@ -42,6 +42,9 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.totalNumberOfReadyStudents = {
                         number: 0
                     };
+                    this.isStudentReady = {
+                        status: false
+                    };
                     // ignore this silly error
                     //connect the socket.io client to our webserver (assuming it's running on the same port)
                     this.socket = io(window.location.host);
@@ -82,9 +85,14 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         console.log("number of students are ready", totalNumberOfReadyStudents);
                         _this.totalNumberOfReadyStudents.number = totalNumberOfReadyStudents;
                     });
-                    // this.socket.on('RecievedYourLovelyReadyResponse', () => {
-                    //   console.log("number of students are ready");
-                    // });
+                    this.socket.on('RecievedYourLovelyReadyResponse', function () {
+                        console.log('We received your lovely ready response my young padawan');
+                        _this.isStudentReady.status = true;
+                    });
+                    this.socket.on('RecievedYourLovelyNotReadyResponse', function () {
+                        console.log('We received your lovely not ready response my young padawan');
+                        _this.isStudentReady.status = false;
+                    });
                     // end of constructor braces
                 }
                 // ================================== Accessor (Getter) Functions ==================================
@@ -104,6 +112,9 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 // ================================== Ready ==================================
                 ClassroomService.prototype.getTotalNumberOfReadyStudents = function () {
                     return this.totalNumberOfReadyStudents;
+                };
+                ClassroomService.prototype.getIsStudentReady = function () {
+                    return this.isStudentReady;
                 };
                 // Menu Component
                 // Instructor ClassName Component
@@ -146,8 +157,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.socket.emit('studentReady');
                 };
                 ClassroomService.prototype.studentNotReady = function () {
-                    // console.log('Secret Code is: ', secretCode);
-                    // this.socket.emit('submitSecretCode', secretCode)
+                    console.log("student changed to not ready");
+                    this.socket.emit('studentNotReady');
                 };
                 ClassroomService = __decorate([
                     core_1.Injectable(), 

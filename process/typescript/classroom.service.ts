@@ -1,7 +1,7 @@
 // Import all of our dependencies
 import { Injectable } from 'angular2/core';
 import { Router } from 'angular2/router';
-import { Room, User, ErrorState, StudentConnections, TotalNumberOfReadyStudents } from './interface';
+import { Room, User, ErrorState, StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from './interface';
 // export interface Room {
 //   name: string,
 //   secretCode: string
@@ -27,6 +27,10 @@ export class ClassroomService {
   totalNumberOfReadyStudents: TotalNumberOfReadyStudents = {
     number: 0
   }
+
+  isStudentReady: IsStudentReady = {
+    status: false
+  }
   // ================================== Accessor (Getter) Functions ==================================
   // ================================== Instructor ==================================
 
@@ -50,6 +54,10 @@ export class ClassroomService {
 
   getTotalNumberOfReadyStudents(){
     return this.totalNumberOfReadyStudents;
+  }
+
+  getIsStudentReady(){
+    return this.isStudentReady;
   }
 
 
@@ -102,9 +110,15 @@ export class ClassroomService {
       this.totalNumberOfReadyStudents.number = totalNumberOfReadyStudents;
     });
 
-    // this.socket.on('RecievedYourLovelyReadyResponse', () => {
-    //   console.log("number of students are ready");
-    // });
+    this.socket.on('RecievedYourLovelyReadyResponse', () => {
+      console.log('We received your lovely ready response my young padawan');
+      this.isStudentReady.status = true;
+    });
+
+    this.socket.on('RecievedYourLovelyNotReadyResponse', () => {
+      console.log('We received your lovely not ready response my young padawan');
+      this.isStudentReady.status = false;
+    });
 
   // end of constructor braces
   }
@@ -154,8 +168,8 @@ studentReady(){
   this.socket.emit('studentReady')
 }
 studentNotReady(){
-  // console.log('Secret Code is: ', secretCode);
-  // this.socket.emit('submitSecretCode', secretCode)
+  console.log("student changed to not ready");
+  this.socket.emit('studentNotReady')
 }
 
 

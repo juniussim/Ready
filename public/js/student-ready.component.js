@@ -30,6 +30,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     this._classroomService = _classroomService;
                     this.studentConnections = this._classroomService.getStudentConnections();
                     this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
+                    this.isStudentReady = this._classroomService.getIsStudentReady();
                     // end of constructor
                 }
                 StudentReadyComponent.prototype.studentReady = function () {
@@ -42,7 +43,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'student-ready',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentReady Component</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <button (click)=\"studentReady()\">I'm ready</button>\n  <button (click)=\"studentIsNotReady()\">Actually, I need more time</button>\n  ",
+                        template: "\n  <h1>StudentReady Component</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <div [ngSwitch]=\"isStudentReady.status\">\n      <button *ngSwitchWhen=\"false\" (click)=\"studentReady()\">I'm ready</button>\n      <button *ngSwitchWhen=\"true\" (click)=\"studentNotReady()\">Actually, I need more time</button>\n  </div>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], StudentReadyComponent);

@@ -38,7 +38,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'instructor-ready',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n  <button (click)=\"instructorContinue()\">Close Room</button>\n  ",
+                        template: "\n  <h1>InstructorReady Component</h1>\n  <h1>Are You Ready</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n  <button (click)=\"instructorContinue()\">Continue</button>\n  ",
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorReadyComponent);

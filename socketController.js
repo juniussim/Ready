@@ -44,12 +44,9 @@ function secretCodeGenerator(availableList, usedList) {
 }
 
 function returnBackSecretCode(availableList, usedList, secretCode){
-  console.log(usedList);
   var indexOfRemovedCode = usedList.indexOf(secretCode);
   usedCodeList.splice(indexOfRemovedCode, 1);
-  console.log(usedList);
   availableList.push(secretCode);
-  console.log(availableList);
 }
 
 // =================================== Socket Controller Functions =================================
@@ -80,13 +77,13 @@ function disconnect(socket){
 }
 
 function submitClassName(socket, className){
-  socket.join(className)
   // this connection guy does nothing yet (just put here in case)
   var room = {
     name: className,
     // pass in secretcodefunction
     secretCode: secretCodeGenerator(availableCodeList,usedCodeList)
   }
+  socket.join(room.secretCode)
   rooms.push(room);
   let connection = findConnection(socket.id);
   connection.secretCode = room.secretCode;
@@ -94,12 +91,13 @@ function submitClassName(socket, className){
   socket.emit('createSecretCode', room)
 }
 
+// this is not completed yet
 function closeRoom(socket, room){
   // we will receive the room object with secret code and name
   // we want to remove this room object from the room array
   // we want to remove the secret code from the usedCodeList
   // we want to add it back the secret code back to the availableList
-  var room = findRoom(room.secretCode);
+  // var room = findRoom(room.secretCode);
   if (room){
     rooms.splice(rooms.indexOf(room), 1);
     // if (connection.user){
@@ -121,7 +119,7 @@ function instructorCallReady(socket){
   // in the emit (reroute the student into student ready)
   let connection = findConnection(socket.id);
   let room = findRoom(connection.secretCode);
-  socket.broadcast.to(room.name).emit('startStudentReady')
+  socket.broadcast.to(room.secretCode).emit('startStudentReady')
 }
 
 
@@ -130,8 +128,6 @@ function instructorCallReady(socket){
 function submitProfileName(socket, profileName){
   let connection = findConnection(socket.id);
   connection.profileName = profileName;
-  // console.log('connection:', connection)
-  // console.log('connections:', connections)
 }
 
 function submitSecretCode(socket, secretCode, io){
@@ -141,11 +137,11 @@ function submitSecretCode(socket, secretCode, io){
     let connection = findConnection(socket.id);
     connection.secretCode = secretCode;
 
-    socket.join(room.name)
+    socket.join(room.secretCode)
     // emit something back so that we can route him to the next page
     socket.emit('secretCodeExist', true)
     // connections should be number of sockets who are joined to the room - 1 (instructor)
-    io.to(room.name).emit("newStudentConnection", (findNumberOfRoomConnections(secretCode)-1));
+    io.to(room.secretCode).emit("newStudentConnection", (findNumberOfRoomConnections(secretCode)-1));
   } else {
     // emit him some message so that client knows that the secret code is wrong
     socket.emit('secretCodeExist', false)
@@ -155,20 +151,33 @@ function submitSecretCode(socket, secretCode, io){
 
 function studentReady(socket,io){
   let connection = findConnection(socket.id);
+  // the difference between studentReady and studentNotReady is setting connection.ready true and false
   connection.ready = true;
+  // end of difference
   let room = findRoom(connection.secretCode);
-  // socket.emit("RecievedYourLovelyReadyResponse")
-  io.to(room.name).emit("updateStudentReady", findNumberOfReadyConnections(connection.secretCode))
+  // this socket emit is for the individual student's ready toggle button
+  socket.emit("RecievedYourLovelyReadyResponse")
+  // this socket broadcast is for everyone in the room so that everyone knows the number of students who are ready
+  io.to(room.secretCode).emit("updateStudentReady", findNumberOfReadyConnections(connection.secretCode))
   // on the client side, it is waiting for updatestudentready
   // it will save a property for the number of studentready
   // display it on both the instructor and student dashboard
   // so we need to use the service reference hack so that both student and instructor ready component will be able to access the updated property
   // 1)Once i receive the emit, i need to save that argument that is passed to me under a property object
   // 2)I need to create a getProperty in the service (just above the constructor)
+  // 3)In my two components, i need to make a getPropertyRequest
 }
 
-function studentNotReady(socket){
-
+function studentNotReady(socket, io){
+  let connection = findConnection(socket.id);
+  connection.ready = false;
+  let room = findRoom(connection.secretCode);
+  // this socket emit is for the individual student's ready toggle button
+  socket.emit("RecievedYourLovelyNotReadyResponse")
+  console.log("server received lovely not ready response")
+  // this socket broadcast is for everyone in the room so that everyone knows the number of students who are ready
+  io.to(room.secretCode).emit("updateStudentReady", findNumberOfReadyConnections(connection.secretCode))
+  console.log("studentNotReady completed run")
 }
 
 // Functions we are exporting to (server.js)
