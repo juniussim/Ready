@@ -73,9 +73,20 @@ io.on("connection", (socket) => {
   })
 
   socket.on('submitSecretCode', (secretCode) => {
-    socketController.submitSecretCode(socket, secretCode);
+    socketController.submitSecretCode(socket, secretCode, io);
   })
 
+  socket.on('instructorCallReady', () => {
+    socketController.instructorCallReady(socket);
+  })
+
+  socket.on('studentReady', () => {
+    socketController.studentReady(socket,io);
+  })
+
+  socket.on('studentNotReady', () => {
+    socketController.studentNotReady(socket);
+  })
 // list of secret codes
 
 // student submit secret code

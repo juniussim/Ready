@@ -30,6 +30,18 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 function ClassroomService(_router) {
                     var _this = this;
                     this._router = _router;
+                    // the reason why we use errorState as a object and not a boolean is because we want to take advantage of the reference vs copy concept
+                    // when we reference a (service) object in a component, we are reference the object instead of copying it
+                    // therefore when the (service) object changes, the component property immediately changes and the one way binding in student join component is immediately reflected.
+                    this.errorState = {
+                        secretCodeError: false
+                    };
+                    this.studentConnections = {
+                        number: 0
+                    };
+                    this.totalNumberOfReadyStudents = {
+                        number: 0
+                    };
                     // ignore this silly error
                     //connect the socket.io client to our webserver (assuming it's running on the same port)
                     this.socket = io(window.location.host);
@@ -47,26 +59,51 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         _this.room = room;
                         _this._router.navigate(['Instructor-dashboard']);
                     });
+                    this.socket.on('newStudentConnection', function (studentConnections) {
+                        console.log('New student joined, total number of students: ', studentConnections);
+                        _this.studentConnections.number = studentConnections;
+                    });
                     // ================================== Student ==================================
                     this.socket.on('secretCodeExist', function (correctSecretCode) {
                         // we want to do the room entry logic here
                         if (correctSecretCode) {
-                            _this.errorState = { secretCodeError: false };
                             _this._router.navigate(['Student-dashboard']);
                         }
                         else {
-                            _this.errorState = { secretCodeError: true };
+                            _this.errorState.secretCodeError = true;
                         }
-                        console.log('status of correctSecretCode', correctSecretCode);
+                        console.log('status of secretCodeError', _this.errorState);
                     });
+                    this.socket.on('startStudentReady', function () {
+                        _this._router.navigate(['Student-ready']);
+                    });
+                    // ========================== Ready  =============================
+                    this.socket.on('updateStudentReady', function (totalNumberOfReadyStudents) {
+                        console.log("number of students are ready", totalNumberOfReadyStudents);
+                        _this.totalNumberOfReadyStudents.number = totalNumberOfReadyStudents;
+                    });
+                    // this.socket.on('RecievedYourLovelyReadyResponse', () => {
+                    //   console.log("number of students are ready");
+                    // });
                     // end of constructor braces
                 }
+                // ================================== Accessor (Getter) Functions ==================================
+                // ================================== Instructor ==================================
                 ClassroomService.prototype.getRoom = function () {
                     // console.log('look here',this.room)
                     return this.room;
                 };
-                ClassroomService.prototype.getSecretCodeError = function () {
+                ClassroomService.prototype.getStudentConnections = function () {
+                    return this.studentConnections;
+                };
+                // ================================== Students ==================================
+                ClassroomService.prototype.getErrorState = function () {
+                    console.log(this.errorState);
                     return this.errorState;
+                };
+                // ================================== Ready ==================================
+                ClassroomService.prototype.getTotalNumberOfReadyStudents = function () {
+                    return this.totalNumberOfReadyStudents;
                 };
                 // Menu Component
                 // Instructor ClassName Component
@@ -75,6 +112,10 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.socket.emit('submitClassName', className);
                 };
                 // Instructor Dashboard Component
+                ClassroomService.prototype.instructorCallReady = function () {
+                    console.log("instructor pressed ARE YOU READY");
+                    this.socket.emit('instructorCallReady');
+                };
                 ClassroomService.prototype.closeRoom = function () {
                     console.log('Closing Room: ', this.room);
                     this.socket.emit('closeRoom', this.room);
@@ -84,6 +125,9 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         secretCode: null,
                     };
                 };
+                // use the server to emit to all those in the room (excluding instructor) - use broadcast
+                // and in the service (listen for an emit)
+                // in the emit (reroute the student into student ready)
                 // Student Profile Component
                 ClassroomService.prototype.submitProfileName = function (profileName) {
                     console.log('My profile name is: ', profileName);
@@ -95,6 +139,15 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 ClassroomService.prototype.submitSecretCode = function (secretCode) {
                     console.log('Secret Code is: ', secretCode);
                     this.socket.emit('submitSecretCode', secretCode);
+                };
+                // Student Ready Component
+                ClassroomService.prototype.studentReady = function () {
+                    console.log("student pressed i'm ready button");
+                    this.socket.emit('studentReady');
+                };
+                ClassroomService.prototype.studentNotReady = function () {
+                    // console.log('Secret Code is: ', secretCode);
+                    // this.socket.emit('submitSecretCode', secretCode)
                 };
                 ClassroomService = __decorate([
                     core_1.Injectable(), 

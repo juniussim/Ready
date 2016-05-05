@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './classroom.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, classroom_service_1;
     var StudentReadyComponent;
     return {
         setters:[
@@ -19,21 +19,32 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (classroom_service_1_1) {
+                classroom_service_1 = classroom_service_1_1;
             }],
         execute: function() {
-            // import { ClassroomService } from './classroom.service';
             StudentReadyComponent = (function () {
-                function StudentReadyComponent(_router) {
+                function StudentReadyComponent(_router, _classroomService) {
                     this._router = _router;
+                    this._classroomService = _classroomService;
+                    this.studentConnections = this._classroomService.getStudentConnections();
+                    this.totalNumberOfReadyStudents = this._classroomService.getTotalNumberOfReadyStudents();
                     // end of constructor
                 }
+                StudentReadyComponent.prototype.studentReady = function () {
+                    this._classroomService.studentReady();
+                };
+                StudentReadyComponent.prototype.studentNotReady = function () {
+                    this._classroomService.studentNotReady();
+                };
                 StudentReadyComponent = __decorate([
                     core_1.Component({
                         selector: 'student-ready',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>StudentReady Component</h1>\n  ",
+                        template: "\n  <h1>StudentReady Component</h1>\n  <h3> {{totalNumberOfReadyStudents.number}}/ {{studentConnections.number}}</h3>\n  <h4>STUDENTS ARE READY</h4>\n  <button (click)=\"studentReady()\">I'm ready</button>\n  <button (click)=\"studentIsNotReady()\">Actually, I need more time</button>\n  ",
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], StudentReadyComponent);
                 return StudentReadyComponent;
             }());

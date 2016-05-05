@@ -17,3 +17,11 @@ export interface User {
 export interface ErrorState {
   secretCodeError: boolean
 }
+
+export interface StudentConnections {
+  number: number
+}
+
+export interface TotalNumberOfReadyStudents {
+  number: number
+}

@@ -32,10 +32,16 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     var room = this._classroomService.getRoom();
                     this.secretCode = room.secretCode;
                     this.name = room.name;
+                    this.studentConnections = this._classroomService.getStudentConnections();
                     // end of constructor
                 }
                 InstructorDashboardComponent.prototype.areYouReady = function () {
                     this._router.navigate(['Instructor-ready']);
+                    this._classroomService.instructorCallReady();
+                    // use the classroomService to emit to the server that we are starting are u ready
+                    // use the server to emit to all those in the room (excluding instructor) - use broadcast
+                    // and in the service (listen for an emit)
+                    // in the emit (reroute the student into student ready)
                 };
                 InstructorDashboardComponent.prototype.closeRoom = function () {
                     this._router.navigate(['Menu']);
@@ -45,7 +51,7 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
                     core_1.Component({
                         selector: 'instructor-dashboard',
                         styles: ["\n    .chicken {\n    }\n  "],
-                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeRoom()\">Close Room</button>\n  "
+                        template: "\n  <h1>InstructorDashboard Component</h1>\n  <h1>{{name}}</h1>\n  <h4>Secret Code: {{secretCode}}</h4>\n  <h4>{{studentConnections.number}} students here</h4>\n  <button (click)=\"areYouReady()\">Are You Ready?</button>\n  <button (click)=\"closeRoom()\">Close Room</button>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, classroom_service_1.ClassroomService])
                 ], InstructorDashboardComponent);
