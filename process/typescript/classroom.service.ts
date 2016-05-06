@@ -104,6 +104,7 @@ export class ClassroomService {
           this.errorState.secretCodeError = false;
           // =>> added this shit in when we were sleepy
           this.room = correctSecretCodeWithObject.room;
+          
         } else {
           this.errorState.secretCodeError = true;
         }

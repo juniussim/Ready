@@ -18,7 +18,7 @@ const rooms = [];
   // secretCode: string;
   // readySessionEnabled: boolean;
 // }
-var availableCodeList = ['martini','mystical','faith','diagonal','magic','booze','master','sprite','heroic','logic','perfect','channel','hustle','code','ruby','paradox','canvas','baseline','island','wonder'];
+var availableCodeList = ['MARTINI','FAITH','DIAGONAL','MAGIC','BOOZE','MASTER', 'HEROIC','HUSTLE','CODE','RUBY','PARADOX','CANVAS','ISLAND','WONDER'];
 var usedCodeList = [];
 
 function findConnection(id){

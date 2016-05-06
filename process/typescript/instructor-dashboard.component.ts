@@ -22,12 +22,13 @@ import { StudentConnections } from './interface';
   </menu>
 
   <div class="contentBody">
-    <h2>SECRET CODE: </h2>
+   <br>
+   <p class="paragraphText ui">ASK YOUR STUDENTS TO JOIN THE ROOM USING THIS CODE:</p>
     <h1 id="instructorSecretCode">{{secretCode}}</h1>
-    <p class="paragraphText ui">ASK YOUR STUDENTS TO JOIN THE ROOM USING THIS CODE</p>
-    <br>
-    <button (click)="areYouReady()" class="ui  button wideButton">Are You Ready?</button>
-    <button (click)="closeClass()" class="ui  button wideButton">Close Room</button>
+    <h1>STUDENTS IN ROOM: <u>{{studentConnections.number}}</u></h1>
+   <br>
+    <button (click)="areYouReady()" class="ui  button wideButton">SEND 'ARE YOU READY?'</button>
+    <button (click)="closeClass()" class="ui  button wideButton">CLOSE ROOM</button>
   </div>
   `
   // directives: [InstructorTrafficComponent],
