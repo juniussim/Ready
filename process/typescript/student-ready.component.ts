@@ -15,6 +15,12 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
     #sinceStart {
       margin-top: -0.5em !important;
    }
+   #imReadyButton{
+     background-color: #83c441 !important;
+   }
+   #iNeedMoreTimeButton{
+     background-color: #c44183 !important;
+   }
   `],
   template: `
   <menu title="Angular2" class="ui fluid one item  menu navPanel">
@@ -29,8 +35,8 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
     <p>SINCE START</p>
     <br>
     <div [ngSwitch]="isStudentReady.status">
-        <button *ngSwitchWhen="false" class="ui  button wideButton" (click)="studentReady()">I'm ready</button>
-        <button *ngSwitchWhen="true" class="ui  button wideButton" (click)="studentNotReady()">Actually, I need more time</button>
+        <button *ngSwitchWhen="false" class="ui  button wideButton" id="imReadyButton" (click)="studentReady()">I'm ready</button>
+        <button *ngSwitchWhen="true" class="ui  button wideButton" id="iNeedMoreTimeButton" (click)="studentNotReady()">Actually, I need more time</button>
         <p *ngSwitchWhen="true" class="paragraphText ui">WAITING FOR TEACHER TO CONTINUE CLASS</p>
     </div>
   </div>

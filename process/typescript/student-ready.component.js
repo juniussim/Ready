@@ -57,5 +57,4 @@ System.register(['angular2/core', 'angular2/router', './timer.component', './cla
         }
     }
 });
-
 //# sourceMappingURL=student-ready.component.js.map
