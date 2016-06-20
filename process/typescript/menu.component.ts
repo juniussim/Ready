@@ -19,7 +19,7 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
     </menu>
     <div class="contentBody">
       <button (click)="joinClass()" class="ui  button wideButton">Join Class</button>
-      <p class="paragraphText ui">OR IF YOU'RE THE INSTRUCTOR OF A CLASS, START A CLASS WITH THE BUTTON BELOW</p>
+      <p class="paragraphText ui">OR IF YOU'RE THE INSTRUCTOR OF A CLASS, CREATE A CLASS</p>
       <button (click)="createClass()" class="ui  button wideButton">Create Class</button>
     </div>
   `,

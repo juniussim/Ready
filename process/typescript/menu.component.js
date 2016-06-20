@@ -54,5 +54,4 @@ System.register(['angular2/core', 'angular2/router', './classroom.service', "ng-
         }
     }
 });
-
 //# sourceMappingURL=menu.component.js.map

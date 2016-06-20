@@ -57,5 +57,4 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
         }
     }
 });
-
 //# sourceMappingURL=student-join.component.js.map

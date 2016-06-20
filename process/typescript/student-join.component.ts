@@ -17,7 +17,7 @@ import { ErrorState } from './interface';
       <input type="text" [(ngModel)]="inputValue" placeholder="Enter Secret Code" autocomplete="off" required autofocus />
       <button [disabled]="!inputValue" class="ui  button wideButton" (click)="submitSecretCode(inputValue)">LET'S GO!</button>
       <div *ngIf="errorCodeState.secretCodeError">
-        <p class="paragraphText ui">You can keep guessing or you can stare at your Instructor till </p>
+        <p class="paragraphText ui">KEEP GUESSING OR STARE AT YOUR INSTRUCTOR FOR THE SECRET CODE </p>
       </div>
   </div>
   `,
