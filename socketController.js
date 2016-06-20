@@ -18,7 +18,7 @@ const rooms = [];
   // secretCode: string;
   // readySessionEnabled: boolean;
 // }
-var availableCodeList = ['MARTINI','FAITH','DIAGONAL','MAGIC','BOOZE','MASTER', 'HEROIC','HUSTLE','CODE','RUBY','PARADOX','CANVAS','ISLAND','WONDER'];
+var availableCodeList = ['GROWTH','AMAZE','REFRESH','MAGIC','BOOZE','MASTER', 'HEROIC','HUSTLE','TEQUILA','POLISH','PARADOX','CANVAS','ISLAND','WONDER'];
 var usedCodeList = [];
 
 function findConnection(id){
@@ -62,7 +62,8 @@ function socketsLeaveRoom(secretCode){
 function secretCodeGenerator(availableList, usedList) {
  //take first element of availableCodeList array,
  //add to end of usedCodeList
- var secretCode = availableList.shift();
+ var secretCode = availableList.splice(Math.floor(Math.random() * availableList.length), 1);
+ console.log('secret code is ' + secretCode);
  usedList.push(secretCode);
  return secretCode;
 }
