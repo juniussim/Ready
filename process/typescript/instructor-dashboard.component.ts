@@ -25,7 +25,7 @@ import { StudentConnections } from './interface';
    <br>
    <p class="paragraphText ui">ASK YOUR STUDENTS TO JOIN THE ROOM USING THIS CODE:</p>
     <h1 id="instructorSecretCode">{{secretCode}}</h1>
-    <h1>STUDENTS IN ROOM: <u>{{studentConnections.number}}</u></h1>
+    <h1>STUDENTS IN ROOM: {{studentConnections.number}}</h1>
    <br>
     <button (click)="areYouReady()" class="ui  button wideButton">SEND 'ARE YOU READY?'</button>
     <button (click)="closeClass()" class="ui  button wideButton">CLOSE ROOM</button>

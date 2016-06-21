@@ -64,5 +64,4 @@ System.register(['angular2/core', 'angular2/router', './classroom.service'], fun
 // anything that insides the constructor gets done first
 // followed by ngOnInit
 // so best practice to leave out the heavy duty stuff outside the constructor and in the Init
-
 //# sourceMappingURL=instructor-dashboard.component.js.map
