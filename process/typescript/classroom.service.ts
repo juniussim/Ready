@@ -113,6 +113,10 @@ export class ClassroomService {
     })
 
     this.socket.on('startStudentReady', () => {
+      var audio = new Audio();
+      audio.src = "student_notification_sound.wav"
+      audio.load();
+      audio.play();
       this._router.navigate(['Student-ready']);
     })
 
@@ -142,6 +146,10 @@ export class ClassroomService {
     });
 
     this.socket.on('studentsEndReadySession', () => {
+      var audio = new Audio();
+      audio.src = "close_ready_notification.wav"
+      audio.load();
+      audio.play();
       this._router.navigate(['Student-dashboard']);
       this.isStudentReady.status = false;
       this.totalNumberOfReadyStudents.number = 0;

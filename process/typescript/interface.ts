@@ -20,7 +20,7 @@ export interface ErrorState {
 
 export interface StudentConnections {
   number: number,
-  list: string,
+  list: string
 }
 
 export interface TotalNumberOfReadyStudents {

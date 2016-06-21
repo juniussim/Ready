@@ -37,7 +37,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         secretCodeError: false
                     };
                     this.studentConnections = {
-                        number: 0
+                        number: 0,
+                        list: ""
                     };
                     this.totalNumberOfReadyStudents = {
                         number: 0
@@ -84,6 +85,10 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         console.log('status of secretCodeError', _this.errorState);
                     });
                     this.socket.on('startStudentReady', function () {
+                        var audio = new Audio();
+                        audio.src = "student_notification_sound.wav";
+                        audio.load();
+                        audio.play();
                         _this._router.navigate(['Student-ready']);
                     });
                     this.socket.on('studentsCloseClass', function () {
@@ -108,6 +113,10 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         _this.isStudentReady.status = false;
                     });
                     this.socket.on('studentsEndReadySession', function () {
+                        var audio = new Audio();
+                        audio.src = "close_ready_notification.wav";
+                        audio.load();
+                        audio.play();
                         _this._router.navigate(['Student-dashboard']);
                         _this.isStudentReady.status = false;
                         _this.totalNumberOfReadyStudents.number = 0;
