@@ -9,8 +9,12 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
 @Component({
   selector: 'student-ready',
   styles: [`
-     h1 {
+    h1 {
       font-size: 4em;
+      margin-bottom: 8px;
+    }
+    #studentsAreReady{
+      margin-top: 10px;
     }
     #sinceStart {
       margin-top: -0.5em !important;
@@ -21,14 +25,25 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
    #iNeedMoreTimeButton{
      background-color: #c44183 !important;
    }
-    progress progress::-webkit-progress-bar progress::-webkit-progress-value progress::-moz-progress-bar {
-     -webkit-appearance: none !important;
-     height: 20px;
-     border-radius: 10px !important;
-     width: 200px;
-     margin-top: -10px !important;
-     margin-bottom: 10px !important;
-     background: #c44183 !important;
+   progress[value] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 300px;
+    height: 1.5em;
+    border-radius: 5px;
+    background-color: #bdbdbd;
+   }
+   progress::-webkit-progress-bar {
+     width: 300px;
+     height: 1.5em;
+     background-color: #bdbdbd;
+     border-radius: 5px;
+   }
+   progress::-webkit-progress-value {
+     width: 300px;
+     height: 1.5em;
+     border-radius: 5px;
+     background-color: #83c441 !important;
    }
   `],
   template: `
@@ -39,7 +54,7 @@ import { StudentConnections, TotalNumberOfReadyStudents, IsStudentReady } from '
   <div class="contentBody">
     <h1>{{totalNumberOfReadyStudents.number}} / {{studentConnections.number}}</h1>
     <progress value={{totalNumberOfReadyStudents.number}} max={{studentConnections.number}}></progress>
-    <p class="paragraphText ui">STUDENTS ARE READY</p>
+    <p class="paragraphText ui" id="studentsAreReady">STUDENTS ARE READY</p>
     <br>
     <timer>00:00</timer>
     <p>SINCE START</p>

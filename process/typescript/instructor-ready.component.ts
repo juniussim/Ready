@@ -11,18 +11,39 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
   styles: [`
     h1 {
       font-size: 4em;
+      margin-bottom: 8px;
+    }
+    #studentsAreReady{
+      margin-top: 10px;
     }
     #sinceStart {
       margin-top: -0.5em !important;
    }
-   progress progress::-webkit-progress-bar progress::-webkit-progress-value progress::-moz-progress-bar {
-     -webkit-appearance: none !important;
-     height: 20px;
-     border-radius: 10px !important;
-     width: 200px;
-     margin-top: -10px !important;
-     margin-bottom: 10px !important;
-     background: #c44183 !important;
+   #imReadyButton{
+     background-color: #83c441 !important;
+   }
+   #iNeedMoreTimeButton{
+     background-color: #c44183 !important;
+   }
+   progress[value] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 300px;
+    height: 1.5em;
+    border-radius: 5px;
+    background-color: #bdbdbd;
+  }
+   progress::-webkit-progress-bar {
+     width: 300px;
+     height: 1.5em;
+     background-color: #bdbdbd;
+     border-radius: 5px;
+   }
+   progress::-webkit-progress-value {
+     width: 300px;
+     height: 1.5em;
+     border-radius: 5px;
+     background-color: #83c441 !important;
    }
   `],
   template: `
