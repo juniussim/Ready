@@ -62,7 +62,7 @@ function socketsLeaveRoom(secretCode){
 function secretCodeGenerator(availableList, usedList) {
  //take first element of availableCodeList array,
  //add to end of usedCodeList
- var secretCode = availableList.splice(Math.floor(Math.random() * availableList.length), 1);
+ var secretCode = availableList.shift();
  console.log('secret code is ' + secretCode);
  usedList.push(secretCode);
  return secretCode;
