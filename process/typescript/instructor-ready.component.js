@@ -65,5 +65,4 @@ System.register(['angular2/core', 'angular2/router', './timer.component', './cla
         }
     }
 });
-
 //# sourceMappingURL=instructor-ready.component.js.map

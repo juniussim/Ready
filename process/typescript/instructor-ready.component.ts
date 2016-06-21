@@ -15,6 +15,15 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
     #sinceStart {
       margin-top: -0.5em !important;
    }
+   progress progress::-webkit-progress-bar progress::-webkit-progress-value progress::-moz-progress-bar {
+     -webkit-appearance: none !important;
+     height: 20px;
+     border-radius: 10px !important;
+     width: 200px;
+     margin-top: -10px !important;
+     margin-bottom: 10px !important;
+     background: #c44183 !important;
+   }
   `],
   template: `
   <menu title="Angular2" class="ui fluid one item  menu navPanel">
@@ -23,6 +32,7 @@ import { StudentConnections, TotalNumberOfReadyStudents } from './interface';
 
   <div class="contentBody">
     <h1>{{totalNumberOfReadyStudents.number}} / {{studentConnections.number}}</h1>
+    <progress value={{totalNumberOfReadyStudents.number}} max={{studentConnections.number}}></progress>
     <p class="paragraphText ui">STUDENTS ARE READY</p>
     <br>
     <timer>00:00</timer>
