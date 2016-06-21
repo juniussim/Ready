@@ -8,7 +8,6 @@
 export interface Room {
   name: string,
   secretCode: string,
-  online: string
 }
 
 export interface User {
@@ -20,7 +19,8 @@ export interface ErrorState {
 }
 
 export interface StudentConnections {
-  number: number
+  number: number,
+  list: string,
 }
 
 export interface TotalNumberOfReadyStudents {

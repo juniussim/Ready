@@ -22,7 +22,8 @@ export class ClassroomService {
   };
 
   studentConnections: StudentConnections = {
-    number: 0
+    number: 0,
+    list: ""
   }
 
   totalNumberOfReadyStudents: TotalNumberOfReadyStudents = {
@@ -104,7 +105,7 @@ export class ClassroomService {
           this.errorState.secretCodeError = false;
           // =>> added this shit in when we were sleepy
           this.room = correctSecretCodeWithObject.room;
-          
+
         } else {
           this.errorState.secretCodeError = true;
         }

@@ -37,7 +37,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         secretCodeError: false
                     };
                     this.studentConnections = {
-                        number: 0
+                        number: 0,
+                        list: ""
                     };
                     this.totalNumberOfReadyStudents = {
                         number: 0
@@ -62,7 +63,6 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     // ================================== Instructor ==================================
                     this.socket.on('createSecretCode', function (room) {
                         console.log('Recieved Room Object:', room);
-                        console.log(room);
                         _this.room = room;
                         _this._router.navigate(['Instructor-dashboard']);
                     });
