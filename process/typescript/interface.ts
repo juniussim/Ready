@@ -7,7 +7,8 @@
 // }
 export interface Room {
   name: string,
-  secretCode: string
+  secretCode: string,
+  online: string
 }
 
 export interface User {

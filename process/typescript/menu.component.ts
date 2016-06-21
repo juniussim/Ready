@@ -9,8 +9,16 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
   selector: 'readyMenu',
   directives: [SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES],
   styles: [`
-    .chicken {
-
+    footer {
+      position: fixed;
+      bottom:0%;
+      width:100%;
+      height:90px;
+    }
+    #credits {
+      font-size: 1em;
+      color: grey;
+      padding: 20px;
     }
   `],
   template: `
@@ -22,6 +30,10 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
       <p class="paragraphText ui">OR IF YOU'RE THE INSTRUCTOR OF A CLASS, CREATE A CLASS</p>
       <button (click)="createClass()" class="ui  button wideButton">Create Class</button>
     </div>
+    <footer>
+      <p id="credits" class="paragraphText ui">Built with pride by <a href="http://www.google.com">Junius Sim</a> and <a href="http://www.gabrielle-ong.com">Gabrielle Ong</a>
+      <br> using Angular2.js and Node.js</p>
+    </footer>
   `,
 })
 
