@@ -31,8 +31,6 @@ import { SEMANTIC_COMPONENTS, SEMANTIC_DIRECTIVES } from "ng-semantic";
       <button (click)="createClass()" class="ui  button wideButton">Create Class</button>
     </div>
     <footer>
-      <p id="credits" class="paragraphText ui">Built with pride by <a href="http://www.google.com">Junius Sim</a> and <a href="http://www.gabrielle-ong.com">Gabrielle Ong</a>
-      <br> using Angular2.js and Node.js</p>
     </footer>
   `,
 })
